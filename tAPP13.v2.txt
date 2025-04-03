@@ -1,0 +1,354 @@
+
+R version 4.4.3 (2025-02-28) -- "Trophy Case"
+Copyright (C) 2025 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[?2004h> install_course_h[Kgu[Kithub?([K[K("dhard","DSC_011_Sp025")
+[?2004l[?2004h> [7minstall_course_github("dhard","DSC_011_Sp025")[27m[C[Cinstall_course_github("dhard","DSC_011_Sp025")
+[?2004l[?2004h> libray(swirl)
+[?2004l[?2004h> library(swirl)
+[?2004l[?2004h> [7minstall_course_github("dhard","DSC_011_Sp25")[27m[C[Cinstall_course_github("dhard","DSC_011_Sp25")
+[?2004l  |                                                                              |                                                                      |   0%  |                                                                              |==============                                                        |  20%  |                                                                              |============================================                          |  62%  |                                                                              |======================================================================| 100%
+[?2004h> swirl(),
+[?2004l[?2004h> swirl()
+[?2004l[?2004hWhat shall I call you? Nico
+[?2004l
+1: DSC 011 Sp25 tAPP13 BaseR FundamentalsI
+2: No. Let me start something new.
+
+[?2004hSelection: 1
+[?2004l
+Nile                 package:datasets                  R Documentation
+
+_F_l_o_w _o_f _t_h_e _R_i_v_e_r _N_i_l_e
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     Measurements of the annual flow of the river Nile at Aswan
+     (formerly ‘Assuan’), 1871-1970, in 10^8 m^3, “with apparent
+     changepoint near 1898” (Cobb(1978), Table 1, p.249).
+
+_U_s_a_g_e:
+
+     Nile
+     
+_F_o_r_m_a_t:
+
+     A time series of length 100.
+
+_S_o_u_r_c_e:
+
+     Durbin, J. and Koopman, S. J. (2001).  _Time Series Analysis by
+     State Space Methods_.  Oxford University Press.
+
+_R_e_f_e_r_e_n_c_e_s:
+
+     Balke, N. S. (1993).  Detecting level shifts in time series.
+     _Journal of Business and Economic Statistics_, *11*, 81-92.
+     doi:10.2307/1391308 <https://doi.org/10.2307/1391308>.
+
+     Cobb, G. W. (1978).  The problem of the Nile: conditional solution
+     to a change-point problem.  _Biometrika_ *65*, 243-51.
+     doi:10.2307/2335202 <https://doi.org/10.2307/2335202>.
+
+_E_x_a_m_p_l_e_s:
+
+     require(stats); require(graphics)
+     par(mfrow = c(2, 2))
+     plot(Nile)
+     acf(Nile)
+     pacf(Nile)
+     ar(Nile) # selects order 2
+     cpgram(ar(Nile)$resid)
+     par(mfrow = c(1, 1))
+     arima(Nile, c(2, 0, 0))
+     
+     ## Now consider missing values, following Durbin & Koopman
+     NileNA <- Nile
+     NileNA[c(21:40, 61:80)] <- NA
+     arima(NileNA, c(2, 0, 0))
+     plot(NileNA)
+     pred <-
+        predict(arima(window(NileNA, 1871, 1890), c(2, 0, 0)), n.ahead = 20)
+     lines(pred$pred, lty = 3, col = "red")
+     lines(pred$pred + 2*pred$se, lty = 2, col = "blue")
+     lines(pred$pred - 2*pred$se, lty = 2, col = "blue")
+     pred <-
+        predict(arima(window(NileNA, 1871, 1930), c(2, 0, 0)), n.ahead = 20)
+     lines(pred$pred, lty = 3, col = "red")
+     lines(pred$pred + 2*pred$se, lty = 2, col = "blue")
+     lines(pred$pred - 2*pred$se, lty = 2, col = "blue")
+     
+     ## Structural time series models
+     par(mfrow = c(3, 1))
+     plot(Nile)
+     ## local level model
+     (fit <- StructTS(Nile, type = "level"))
+     lines(fitted(fit), lty = 2)              # contemporaneous smoothing
+     lines(tsSmooth(fit), lty = 2, col = 4)   # fixed-interval smoothing
+     plot(residuals(fit)); abline(h = 0, lty = 3)
+     ## local trend model
+     (fit2 <- StructTS(Nile, type = "trend")) ## constant trend fitted
+     pred <- predict(fit, n.ahead = 30)
+     ## with 50% confidence interval
+     ts.plot(Nile, pred$pred,
+             pred$pred + 0.67*pred$se, pred$pred -0.67*pred$se)
+     
+     ## Now consider missing values
+     plot(NileNA)
+     (fit3 <- StructTS(NileNA, type = "level"))
+     lines(fitted(fit3), lty = 2)
+     lines(tsSmooth(fit3), lty = 3)
+     plot(residuals(fit3)); abline(h = 0, lty = 3)
+     
+
+
+[?2004h> Nile
+[?2004lTime Series:
+Start = 1871 
+End = 1970 
+Frequency = 1 
+  [1] 1120 1160  963 1210 1160 1160  813 1230 1370 1140  995  935 1110  994 1020
+ [16]  960 1180  799  958 1140 1100 1210 1150 1250 1260 1220 1030 1100  774  840
+ [31]  874  694  940  833  701  916  692 1020 1050  969  831  726  456  824  702
+ [46] 1120 1100  832  764  821  768  845  864  862  698  845  744  796 1040  759
+ [61]  781  865  845  944  984  897  822 1010  771  676  649  846  812  742  801
+ [76] 1040  860  874  848  890  744  749  838 1050  918  986  797  923  975  815
+ [91] 1020  906  901 1170  912  746  919  718  714  740
+
+  |                                                                              |================                                                      |  22%
+1: Categorical
+2: Numerical
+3: Dates/Times
+
+[?2004hSelection: 3
+[?2004l
+1: Numerical
+2: Categorical
+3: Dates/Times
+
+[?2004hSelection: 2
+[?2004l
+1: Dates/Times
+2: Numerical
+3: Categorical
+
+[?2004hSelection: 1
+[?2004l
+1: Dates/Times
+2: Categorical
+3: Numerical
+
+[?2004hSelection: 1 [K: Dates/Tie[Kmes
+[?2004l
+1: Dates/Times
+2: Numerical
+3: Categorical
+
+[?2004hSelection: 2: Numerical
+[?2004l
+  |                                                                              |==================                                                    |  25%[?2004h> Nile typeof()
+[?2004l[?2004h> typeof ()[K[K[K()
+[?2004l[?2004h> typeof(NileP[K)
+[?2004l[1] "double"
+
+  |                                                                              |===================                                                   |  28%[?2004h...
+[?2004l[K
+  |                                                                              |=====================                                                 |  30%[?2004h> 
+[?2004l[K[?2004h> 
+[?2004l[K[?2004h> mode(Nile)
+[?2004l[1] "numeric"
+
+  |                                                                              |=======================                                               |  32%[?2004h...
+[?2004l[K
+  |                                                                              |=========================                                             |  35%[?2004h> 
+[?2004l[K[?2004h> 
+[?2004l[K[?2004h> Nile[][K46[[K}[K]
+[?2004l[1] 1120
+
+  |                                                                              |==========================                                            |  38%
+1: time in years
+2: flow in cubic meters
+
+[?2004hSelection: 1.[K[K2.[K[K1. [K[K ti[K[Ktime [K[K[K[K[K[K[K1: time in years
+[?2004l
+  |                                                                              |============================                                          |  40%
+1: time in years
+2: flow in cubic meters
+
+[?2004hSelection: 2: fk[Klow in cubic meters
+[?2004l
+  |                                                                              |==============================                                        |  43%[?2004h> 
+[?2004l[K[?2004h> hist()[KNile)
+[?2004l
+  |                                                                              |================================                                      |  45%
+1: flow in cubic meters
+2: time in years
+3: frequency
+
+[?2004hSelection: 1 [K: flow in bu[K[Kcubic meters
+[?2004l
+  |                                                                              |=================================                                     |  48%
+1: flow in cubic meters
+2: frequency
+3: time in years
+
+[?2004hSelection: 2: frequency
+[?2004l
+  |                                                                              |===================================                                   |  50%[?2004h> stem(Nile)
+[?2004l
+  The decimal point is 2 digit(s) to the right of the |
+
+   4 | 6
+   5 | 
+   6 | 5899
+   7 | 000123444455667778
+   8 | 000011222233344555556667779
+   9 | 0011222244466678899
+  10 | 0122234455
+  11 | 00012244566678
+  12 | 112356
+  13 | 7
+
+
+  |                                                                              |=====================================                                 |  52%[?2004h> 4.6
+[?2004l[1] 4.6
+[?2004h> 4
+[?2004l[1] 4
+[?2004h> 4|[K | 6
+[?2004l[1] TRUE
+
+  |                                                                              |======================================                                |  55%[?2004h> min(Nile)
+[?2004l[1] 456
+
+  |                                                                              |========================================                              |  58%[?2004h...hist(Nile)
+[?2004l
+  |                                                                              |==========================================                            |  60%[?2004h...nile _ [K[K[KP[K_hist[K[K[K[K[K[K[K[K[Knile_hist <- hist(nile[K[K[K[KNile, plot [K = fa[K[KFALSE)
+[?2004l
+  |                                                                              |============================================                          |  62%[?2004h> hist [K_NIL[K[Kile
+[?2004l[?2004h> Hi[K[Khist_B[KNile <- hist(Bile[K[K[K[KNile)
+[?2004l
+  |                                                                              |==============================================                        |  65%[?2004h> mode(hist_Nile)
+[?2004l[1] "list"
+
+  |                                                                              |===============================================                       |  68%[?2004h...
+[?2004l[K
+  |                                                                              |=================================================                     |  70%[?2004h...
+[?2004l[K
+  |                                                                              |===================================================                   |  73%[?2004h> hil[Kst_)[KNile
+[?2004l$breaks
+ [1]  400  500  600  700  800  900 1000 1100 1200 1300 1400
+
+$counts
+ [1]  1  0  5 20 25 19 12 11  6  1
+
+$density
+ [1] 0.0001 0.0000 0.0005 0.0020 0.0025 0.0019 0.0012 0.0011 0.0006 0.0001
+
+$mids
+ [1]  450  550  650  750  850  950 1050 1150 1250 1350
+
+$xname
+[1] "Nile"
+
+$equidist
+[1] TRUE
+
+attr(,"class")
+[1] "histogram"
+
+  |                                                                              |====================================================                  |  75%[?2004h> hist_BN[K[KNile[K[K[K[K[K[K[K[K[Knames()
+[?2004l[?2004h> names(Nile)
+[?2004lNULL
+[?2004h> es[Kvaluate_[Kn[K nae[Kem[K[Kmes(hist_Nile)
+[?2004l[?2004h> names(hist([K_Nile)
+[?2004l[1] "breaks"   "counts"   "density"  "mids"     "xname"    "equidist"
+
+  |                                                                              |======================================================                |  78%[?2004h> str(Nile)
+[?2004l Time-Series [1:100] from 1871 to 1970: 1120 1160 963 1210 1160 1160 813 1230 1370 1140 ...
+[?2004h> ster[K[Kr(hist([K_H[KNile)
+[?2004lList of 6
+ $ breaks  : int [1:11] 400 500 600 700 800 900 1000 1100 1200 1300 ...
+ $ counts  : int [1:10] 1 0 5 20 25 19 12 11 6 1
+ $ density : num [1:10] 0.0001 0 0.0005 0.002 0.0025 0.0019 0.0012 0.0011 0.0006 0.0001
+ $ mids    : num [1:10] 450 550 650 750 850 950 1050 1150 1250 1350
+ $ xname   : chr "Nile"
+ $ equidist: logi TRUE
+ - attr(*, "class")= chr "histogram"
+
+  |                                                                              |========================================================              |  80%[?2004h> $[Khist_Nile$density
+[?2004l [1] 0.0001 0.0000 0.0005 0.0020 0.0025 0.0019 0.0012 0.0011 0.0006 0.0001
+
+  |                                                                              |==========================================================            |  82%
+1: midpoints
+2: relative frequencies
+3: bin breaks
+
+[?2004hSelection: 1. [K[K: mid[K[K[Kmidpoints
+[?2004l
+1: bin breaks
+2: relative frequencies
+3: midpoints
+
+[?2004hSelection: 2: relativ[Kve frenqui[K[K[K[Knquin[K[Ken[K[K[K[K[Kquienc[K[K[K[Kences[K[Kies
+[?2004l
+  |                                                                              |============================================================          |  85%[?2004h> mode(hist_B[KNile$densis[Kty)
+[?2004l[1] "numeric"
+
+  |                                                                              |=============================================================         |  88%
+1: vector
+2: list
+3: something else
+
+[?2004hSelection: 2. list[K[K[K[K[K[K: list
+[?2004l
+1: vector
+2: something else
+3: list
+
+[?2004hSelection: 1: vector
+[?2004l
+  |                                                                              |===============================================================       |  90%[?2004h...[7mx <- c(1, 2, 3, 4, 5)[27m
+[7mx * 2           # Multiplies each element by 2[27m
+[7mlog(x)          # Takes log of each element[27m
+[7mx + c(10, 20)   # Recycled addition[27m
+[A[A[A[A[C[C[Cx <- c(1, 2, 3, 4, 5)
+x * 2           # Multiplies each element by 2
+log(x)          # Takes log of each element
+x + c(10, 20)   # Recycled addition
+[A
+[?2004l
+  |                                                                              |=================================================================     |  92%
+  |                                                                              |==================================================================    |  95%[?2004h> measn[K[Kan[K[Kn(hist_Nile)
+[?2004l[1] NA
+[?2004h> mean(Nile)
+[?2004l[1] 919.35
+
+  |                                                                              |====================================================================  |  98%[?2004h> 
+[?2004l[K[?2004h> sum(Nile)/[K / length(Nile)
+[?2004l[1] 919.35
+
+  |                                                                              |======================================================================| 100%
+1: dhard-DSC 011 Sp25-a12b508
+2: DSC 011 Sp25
+3: R Programming
+4: Take me to the swirl course repository!
+
+[?2004hSelection: q()
+[?2004lEnter an item from the menu, or 0 to exit
+[?2004hSelection: 0
+[?2004l[?2004h> q()
+[?2004l[?2004hSave workspace image? [y/n/c]: y
+[?2004l

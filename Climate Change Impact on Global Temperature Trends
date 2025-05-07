@@ -1,6 +1,6 @@
 ---
 title: "Climate Change Impact on Global Temperature Trends"
-author: "Nicholas Cheuquian"
+author: "NC"
 date: "May 7, 2025"
 format: 
   revealjs:
@@ -10,9 +10,7 @@ format:
     scrollable: true
     code-fold: false
     code-tools: true
-    logo: "https://www.example.edu/logo.png"  # Replace with your university logo
     footer: "DSC-011 Spring 2025 - Data Science Presentation"
-editor: visual
 ---
 
 ## Research Question & Motivation
@@ -46,12 +44,18 @@ library(scales)
 
 # Create sample temperature anomaly data
 set.seed(123)
+
+# Create year-month combinations
+years <- rep(1880:2024, each = 12)
+months <- rep(1:12, times = length(1880:2024))
+
+# Create the tibble with correct dimensions
 temp_data <- tibble(
-  year = 1880:2024,
-  month = rep(1:12, each = 145),
+  year = years,
+  month = months,
   date = make_date(year, month, 1),
-  anomaly = rnorm(145*12, 
-                  mean = (1880:2024 - 1880) * 0.01 - 0.3, 
+  anomaly = rnorm(length(years), 
+                  mean = (years - 1880) * 0.01 - 0.3, 
                   sd = 0.2)
 )
 

@@ -1,0 +1,91 @@
+
+> date()
+[1] "Wed Apr 16 00:15:12 2025"
+
+> Sys.info()
+       sysname        release        version       nodename        machine          login           user effective_user 
+     "Windows"       "10 x64"  "build 26100"  "NICOSPECTRE"       "x86-64"        "nicol"        "nicol"        "nicol" 
+
+> ans_key_lab10 <- list( list(name="babies_born_by_decade_and_sex",hash="0a205d3169bcea05112d323cdf78b35a"),
++                        list(name="babie ..." ... [TRUNCATED] 
+
+> test <- function(x,i){
++     points <- 0
++     cat(paste0("Test ",i,":\n"))
++     cat(paste0("Is the variable \"",x$name,"\" defined? ",ifelse(exist .... [TRUNCATED] 
+
+> i <- 1
+
+> pointsearned <- 0
+
+> maxpoints <- 30
+
+> for (item in ans_key_lab10) {
++   points <- test(item,i)
++   pointsearned <- pointsearned + points
++   i <- i + 1  
++ }
+Test 1:
+Is the variable "babies_born_by_decade_and_sex" defined? YES.
+Testing the value of babies_born_by_decade_and_sex: INCORRECT 
+Printing first few rows...
+      boy_freq girl_freq
+1880s   961549   1131168
+1890s   983401   1851347
+1900s  1142330   2378588
+1910s  5474625   6497591
+1920s  9104126   9457105
+1930s  8905213   8453513
+
+
+Test 2:
+Is the variable "babies_born_by_name_and_sex" defined? YES.
+Testing the value of babies_born_by_name_and_sex: INCORRECT 
+Printing first few rows...
+     name sex   freq
+1   Aaron boy 559070
+2    Abel boy  23534
+3 Abraham boy  50861
+4    Adam boy 545762
+5  Adolph boy   7403
+6  Adrian boy 221105
+
+
+Test 3:
+Is the variable "sex_ratio_by_decade" defined? YES.
+Testing the value of sex_ratio_by_decade: INCORRECT 
+Printing first few rows...
+    1880s     1890s     1900s     1910s     1920s     1930s 
+0.4594740 0.3469095 0.3244410 0.4572775 0.4904915 0.5130107 
+
+
+Test 4:
+Is the variable "mean_rank_by_name_and_sex" defined? YES.
+Testing the value of mean_rank_by_name_and_sex: INCORRECT 
+Printing first few rows...
+     name sex mean_rank
+1   Aaron boy        NA
+2    Abel boy        NA
+3 Abraham boy        NA
+4    Adam boy        NA
+5  Adolph boy        NA
+6  Adrian boy        NA
+
+
+Test 5:
+Is the variable "baby_letters_rel" defined? YES.
+Testing the value of baby_letters_rel: CORRECT 
+Printing first few rows...
+  letter boy.freq_pop boy.freq_obs girl.freq_pop girl.freq_obs both.freq_pop both.freq_obs
+1      A   0.06383194   0.08000000    0.09673364    0.09714286    0.07900620    0.08857143
+2      B   0.04415781   0.05214286    0.05363003    0.04857143    0.04852640    0.05035714
+3      C   0.07323478   0.08071429    0.07007587    0.07250000    0.07177790    0.07660714
+4      D   0.08045511   0.06178571    0.05790724    0.04285714    0.07005603    0.05232143
+5      E   0.03879860   0.05785714    0.06109004    0.06964286    0.04907941    0.06375000
+6      F   0.01541949   0.02714286    0.01043566    0.01750000    0.01312095    0.02232143
+
+
+
+> cat(paste0("\nEarned: ",pointsearned," points out of ",maxpoints," possible.\n"))
+
+Earned: 30 points out of 30 possible.

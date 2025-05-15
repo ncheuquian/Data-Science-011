@@ -1,0 +1,1006 @@
+---
+title: "DSC-011-Sp25-tAPP21_Cheuquian"
+format: html
+---
+
+Content type 'application/zip' length 510602 bytes (498 KB)
+downloaded 498 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/broom_1.0.8.zip'
+Content type 'application/zip' length 1947432 bytes (1.9 MB)
+downloaded 1.9 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/conflicted_1.2.0.zip'
+Content type 'application/zip' length 57763 bytes (56 KB)
+downloaded 56 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/dbplyr_2.5.0.zip'
+Content type 'application/zip' length 1269486 bytes (1.2 MB)
+downloaded 1.2 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/dtplyr_1.3.1.zip'
+Content type 'application/zip' length 360199 bytes (351 KB)
+downloaded 351 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/forcats_1.0.0.zip'
+Content type 'application/zip' length 429275 bytes (419 KB)
+downloaded 419 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/ggplot2_3.5.2.zip'
+Content type 'application/zip' length 5017175 bytes (4.8 MB)
+downloaded 4.8 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/googledrive_2.1.1.zip'
+Content type 'application/zip' length 1911391 bytes (1.8 MB)
+downloaded 1.8 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/googlesheets4_1.1.1.zip'
+Content type 'application/zip' length 525893 bytes (513 KB)
+downloaded 513 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/haven_2.5.4.zip'
+Content type 'application/zip' length 775263 bytes (757 KB)
+downloaded 757 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/hms_1.1.3.zip'
+Content type 'application/zip' length 105829 bytes (103 KB)
+downloaded 103 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/lubridate_1.9.4.zip'
+Content type 'application/zip' length 990251 bytes (967 KB)
+downloaded 967 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/modelr_0.1.11.zip'
+Content type 'application/zip' length 204197 bytes (199 KB)
+downloaded 199 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/purrr_1.0.4.zip'
+Content type 'application/zip' length 551242 bytes (538 KB)
+downloaded 538 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/ragg_1.4.0.zip'
+Content type 'application/zip' length 3147317 bytes (3.0 MB)
+downloaded 3.0 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/readr_2.1.5.zip'
+Content type 'application/zip' length 1226625 bytes (1.2 MB)
+downloaded 1.2 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/readxl_1.4.5.zip'
+Content type 'application/zip' length 750458 bytes (732 KB)
+downloaded 732 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/reprex_2.1.1.zip'
+Content type 'application/zip' length 505354 bytes (493 KB)
+downloaded 493 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/rstudioapi_0.17.1.zip'
+Content type 'application/zip' length 346749 bytes (338 KB)
+downloaded 338 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/rvest_1.0.4.zip'
+Content type 'application/zip' length 310909 bytes (303 KB)
+downloaded 303 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/tidyr_1.3.1.zip'
+Content type 'application/zip' length 1273459 bytes (1.2 MB)
+downloaded 1.2 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/xml2_1.3.8.zip'
+Content type 'application/zip' length 1608149 bytes (1.5 MB)
+downloaded 1.5 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/tidyverse_2.0.0.zip'
+Content type 'application/zip' length 431675 bytes (421 KB)
+downloaded 421 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/palmerpenguins_0.1.1.zip'
+Content type 'application/zip' length 3005496 bytes (2.9 MB)
+downloaded 2.9 MB
+
+package ‘fastmap’ successfully unpacked and MD5 sums checked
+package ‘colorspace’ successfully unpacked and MD5 sums checked
+package ‘bit’ successfully unpacked and MD5 sums checked
+package ‘base64enc’ successfully unpacked and MD5 sums checked
+package ‘sass’ successfully unpacked and MD5 sums checked
+package ‘cachem’ successfully unpacked and MD5 sums checked
+package ‘farver’ successfully unpacked and MD5 sums checked
+package ‘labeling’ successfully unpacked and MD5 sums checked
+package ‘munsell’ successfully unpacked and MD5 sums checked
+package ‘RColorBrewer’ successfully unpacked and MD5 sums checked
+package ‘viridisLite’ successfully unpacked and MD5 sums checked
+package ‘rappdirs’ successfully unpacked and MD5 sums checked
+package ‘rematch’ successfully unpacked and MD5 sums checked
+package ‘bit64’ successfully unpacked and MD5 sums checked
+package ‘prettyunits’ successfully unpacked and MD5 sums checked
+package ‘highr’ successfully unpacked and MD5 sums checked
+package ‘xfun’ successfully unpacked and MD5 sums checked
+package ‘bslib’ successfully unpacked and MD5 sums checked
+package ‘fontawesome’ successfully unpacked and MD5 sums checked
+package ‘htmltools’ successfully unpacked and MD5 sums checked
+package ‘jquerylib’ successfully unpacked and MD5 sums checked
+package ‘tinytex’ successfully unpacked and MD5 sums checked
+package ‘backports’ successfully unpacked and MD5 sums checked
+package ‘memoise’ successfully unpacked and MD5 sums checked
+package ‘blob’ successfully unpacked and MD5 sums checked
+package ‘DBI’ successfully unpacked and MD5 sums checked
+package ‘data.table’ successfully unpacked and MD5 sums checked
+package ‘gtable’ successfully unpacked and MD5 sums checked
+package ‘isoband’ successfully unpacked and MD5 sums checked
+package ‘scales’ successfully unpacked and MD5 sums checked
+package ‘gargle’ successfully unpacked and MD5 sums checked
+package ‘uuid’ successfully unpacked and MD5 sums checked
+package ‘cellranger’ successfully unpacked and MD5 sums checked
+package ‘ids’ successfully unpacked and MD5 sums checked
+package ‘rematch2’ successfully unpacked and MD5 sums checked
+package ‘cpp11’ successfully unpacked and MD5 sums checked
+package ‘timechange’ successfully unpacked and MD5 sums checked
+package ‘systemfonts’ successfully unpacked and MD5 sums checked
+package ‘textshaping’ successfully unpacked and MD5 sums checked
+package ‘clipr’ successfully unpacked and MD5 sums checked
+package ‘vroom’ successfully unpacked and MD5 sums checked
+package ‘tzdb’ successfully unpacked and MD5 sums checked
+package ‘progress’ successfully unpacked and MD5 sums checked
+package ‘knitr’ successfully unpacked and MD5 sums checked
+package ‘rmarkdown’ successfully unpacked and MD5 sums checked
+package ‘selectr’ successfully unpacked and MD5 sums checked
+package ‘broom’ successfully unpacked and MD5 sums checked
+package ‘conflicted’ successfully unpacked and MD5 sums checked
+package ‘dbplyr’ successfully unpacked and MD5 sums checked
+package ‘dtplyr’ successfully unpacked and MD5 sums checked
+package ‘forcats’ successfully unpacked and MD5 sums checked
+package ‘ggplot2’ successfully unpacked and MD5 sums checked
+package ‘googledrive’ successfully unpacked and MD5 sums checked
+package ‘googlesheets4’ successfully unpacked and MD5 sums checked
+package ‘haven’ successfully unpacked and MD5 sums checked
+package ‘hms’ successfully unpacked and MD5 sums checked
+package ‘lubridate’ successfully unpacked and MD5 sums checked
+package ‘modelr’ successfully unpacked and MD5 sums checked
+package ‘purrr’ successfully unpacked and MD5 sums checked
+package ‘ragg’ successfully unpacked and MD5 sums checked
+package ‘readr’ successfully unpacked and MD5 sums checked
+package ‘readxl’ successfully unpacked and MD5 sums checked
+package ‘reprex’ successfully unpacked and MD5 sums checked
+package ‘rstudioapi’ successfully unpacked and MD5 sums checked
+package ‘rvest’ successfully unpacked and MD5 sums checked
+package ‘tidyr’ successfully unpacked and MD5 sums checked
+package ‘xml2’ successfully unpacked and MD5 sums checked
+package ‘tidyverse’ successfully unpacked and MD5 sums checked
+package ‘palmerpenguins’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	C:\Users\nicol\AppData\Local\Temp\RtmpeQmNhC\downloaded_packages
+> \ install.packages(c("tidyverse","palmerpenguins"))
+Error: unexpected symbol in "\ install.packages"
+> library(swirl)
+
+| Hi! Type swirl() when you are ready
+| to begin.
+
+> uninstall_course("DSC_011_Sp25")
+Course uninstalled successfully!
+> install_course_github("dhard","DSC_011_Sp25")
+  |=============================| 100%
+> swirl()
+
+| Welcome to swirl! Please sign in. If
+| you've been here before, use the
+| same name as you did then. If you
+| are new, call yourself something
+| unique.
+
+What shall I call you? Nico
+
+| Please choose a course, or type 0 to
+| exit swirl.
+
+1: DSC 011 Sp25
+2: Take me to the swirl course repository!
+
+Selection: 1
+
+| Please choose a lesson, or type 0 to
+| return to course menu.
+
+1: tAPP13 BaseR FundamentalsI
+2: tAPP14 more baseR Vectors
+3: tAPP15 Data-Frames and Factors
+4: tAPP16 Programming Data Science Workflows with Base R Data-Types PartI
+5: tAPP17 Data Science Workflows with Base R Part II
+6: tAPP21 Introuction to Quarto, Tidyverse,and ggplot2
+
+Selection: 6
+  |                             |   0%
+
+| Welcome to tAPP21, introducing
+| Quarto notebooks and the tidyverse
+| collection of packages for data
+| science, particularly tibble and
+| ggplot2.
+
+...
+
+  |=                            |   2%
+| Today's lesson will focus on the
+| tidyverse descendents of the base-R
+| data-frame, which are called
+| tibbles, and how to plot from
+| tibbles using tidyverses' famous and
+| very popular plotting package,
+| ggplot2.
+
+...
+
+  |=                            |   5%
+| In data science, plots are always
+| best generated in notebooks. This is
+| because notebooks communicate a
+| narrative context that tell the
+| story of the plots: why they were
+| made, what data they show, how they
+| were made and so on. So this lesson
+| will walk you through making a
+| record of your work in a Quarto
+| notebook in RStudio just like a
+| professional data scientist would
+| work a project in RStudio.
+
+...
+
+  |==                           |   7%
+| You will learn to make plots with
+| ggplot2 by programming in the R
+| Console and recording your validated
+| code and results in a Quarto
+| notebook.
+
+...
+
+  |===                          |  10%
+| If you have not yet already done so,
+| please open the quarto notebook file
+| "DSC-011-Sp25-tAPP21_YourLastname.qmd"
+| in RStudio, edit it with your name
+| in its YAML header, and save it in
+| the same directory with a new name
+| that includes your last name before
+| the .qmd file extension.
+
+...
+
+  |===                          |  12%
+| After saving the file, render it to
+| HTML by pressing the Render button
+| in the toolbar. The HTML output
+| should appear in the Viewer tab of
+| the Files/Help pane of RStudio. You
+| can make a copy pop up in your
+| browser by pressing a button in the
+| toolbar of this pane.
+
+...
+
+  |====                         |  14%
+| Back in the document/source pane of RStudio on the upper left, its important to
+| select "Source" instead of "Visual" in order to see and edit the markdown source
+| of the notebook file. Please select "Source".
+
+...
+
+  |=====                        |  17%
+| You need to learn markdown in order to successfully author documents using Quarto
+| and Jupyter notebooks. Markdown is a human- and machine-readable
+| plain-text-encoded markup language for authoring documents, presentations,
+| websites, etc. Markdown is also the format of README files on GitHub and widely
+| used elsewhere.
+
+...
+
+  |======                       |  19%
+| The section and subsection structure of a markdown document is created like an
+| outline using the hashtag symbol (#). To illustrate, copy and paste the markdown
+| in the markdown file "intro,md" included in your cloned git repository. Copy from
+| the line "## Introduction" to the end of "### Loading Library Dependencies", and
+| paste it into your Quarto notebook below the YAML header line which looks like
+| this (---).
+
+...
+
+  |======                       |  21%
+| Now please render the notebook file and verify that the new section and subsection
+| appears. If you have problems or questions with this step, please ask for help.
+
+...
+
+  |=======                      |  24%
+| Before you can use the tidyverse, including ggplot2, on any new version of R that
+| you install on your computer or any machine, you need to install it once.
+
+...
+
+  |========                     |  26%
+| According to its website at http://tidyverse.org: "The tidyverse is an opinionated
+| collection of R packages designed for data science. All packages share an
+| underlying design philosophy, grammar, and data structures."
+
+...
+
+  |========                     |  29%
+| As you see, the tidyverse is a collection of packages, including tibble and
+| ggplot2 that work together using a common interface. Although we can install and
+| load these packages individually, we can choose to save time by loading the
+| complete tidyverse at once. Let's load the tidyverse now, in case you haven't
+| already.
+
+...
+
+  |=========                    |  31%
+| Like in all interpreted languages, in R we need to load packages before we can use
+| them (and we can only load them after they are installed). To load the tidyverse,
+| including ggplot2, call the R function library() with the bare name tidyverse
+| without quotes.
+
+> 
+> 
+> library()
+
+| Almost! Try again. Or, type info() for more options.
+
+| Evaluate library(tidyverse)
+
+> library(tidyverse)
+── Attaching core tidyverse packages ───────────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.4     
+── Conflicts ─────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package to force all conflicts to become errors
+
+| Perseverance, that's the answer.
+
+  |==========                   |  33%
+| But to record and communicate our work that uses the tidyverse packages in our
+| Quarto notebook we also need to make the R interpreter that evaluates R code
+| chunks for our notebook load the tidyverse packages. To do this, create an R code
+| chunk in the bottom subsection which is for the purpose of loading all of the
+| notebook package dependencies for it to render properly.
+
+...
+
+  |==========                   |  36%
+| On a new line, type "```{r}" and then hit return twice and end the R code chunk
+| with three backticks on a new line "```". RStudio offers a keypress to template
+| code chunks, try command-option-i (Mac) or control-option-i (WSL2). The Professor
+| has also written the markdown for an R code chunk on the whiteboard. Then between
+| the backtick lines, enter the R code "library(tidyverse)" and Render the notebook.
+
+...
+
+  |===========                  |  38%
+| Instead of base-R data-frames, the tidyverse uses tibbles. However, tibbles are
+| very closely related to data-frames; in fact, in the object-oriented programming
+| sense, tibbles are derived from or descended from data-frames
+
+...
+
+  |============                 |  40%
+| This means that almost all functions you have already learned that take
+| data-frames can operate on tibbles, and that many functions written to take
+| tibbles as input can operate on data-frames too.
+
+...
+
+  |============                 |  43%
+| To better understand tibbles, let's load a famous data-set published as tibbles,
+| the Palmer Penguins dataset (learn more at
+| https://allisonhorst.github.io/palmerpenguins/), by calling the library() function
+| on the package name bareword palmerpenguins.
+
+> 
+> 
+> library(palmerpenguins)
+
+| Your dedication is inspiring!
+
+  |=============                |  45%
+| Back in your Quarto notebook at the bottom, inside the only code chunk in your
+| notebook after the line "library(tidyverse)" hit return to make a new blank line
+| inside the code chunk, and add the R code "library(palmerpenguins)" and Render the
+| notebook.
+
+...
+
+  |==============               |  48%
+| Now you can see how tibbles print by evaluating the name of a tibble called
+| "penguins" that's been loaded into memory with the palmerpenguins package. Please
+| give it a try.
+
+> 
+> 
+> 
+> library(tibble)
+
+| Try again. Getting it right on the first try is boring anyway! Or, type info() for
+| more options.
+
+| Evaluate penguins with no quotes, and use tab-completion to save typing!
+
+> library(penguins)
+Error in library(penguins) : there is no package called ‘penguins’
+> tidyverse  ''
+Error: unexpected string constant in "tidyverse  ''"
+> tidyverse  
+Error: object 'tidyverse' not found
+> library(tidyverse)
+
+| Keep trying! Or, type info() for more options.
+
+| Evaluate penguins with no quotes, and use tab-completion to save typing!
+
+> library(palmerpenguins)
+
+| Try again. Getting it right on the first try is boring anyway! Or, type info() for
+| more options.
+
+| Evaluate penguins with no quotes, and use tab-completion to save typing!
+
+> library(askpass)
+
+| Not quite! Try again. Or, type info() for more options.
+
+| Evaluate penguins with no quotes, and use tab-completion to save typing!
+
+> library(penguins)
+Error in library(penguins) : there is no package called ‘penguins’
+> penguins(tibble)
+Error in penguins(tibble) : could not find function "penguins"
+> penguins
+# A tibble: 344 × 8
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex  
+   <fct>   <fct>              <dbl>         <dbl>             <int>       <int> <fct>
+ 1 Adelie  Torgersen           39.1          18.7               181        3750 male 
+ 2 Adelie  Torgersen           39.5          17.4               186        3800 fema…
+ 3 Adelie  Torgersen           40.3          18                 195        3250 fema…
+ 4 Adelie  Torgersen           NA            NA                  NA          NA NA   
+ 5 Adelie  Torgersen           36.7          19.3               193        3450 fema…
+ 6 Adelie  Torgersen           39.3          20.6               190        3650 male 
+ 7 Adelie  Torgersen           38.9          17.8               181        3625 fema…
+ 8 Adelie  Torgersen           39.2          19.6               195        4675 male 
+ 9 Adelie  Torgersen           34.1          18.1               193        3475 NA   
+10 Adelie  Torgersen           42            20.2               190        4250 NA   
+# ℹ 334 more rows
+# ℹ 1 more variable: year <int>
+# ℹ Use `print(n = ...)` to see more rows
+
+| All that hard work is paying off!
+
+  |==============               |  50%
+| The tidyverse equivalent to the base-R str() function is called glimpse(). Try
+| calling glimpse() on penguins
+
+> 
+> glimpse(penguins)
+Rows: 344
+Columns: 8
+$ species           <fct> Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, A…
+$ island            <fct> Torgersen, Torgersen, Torgersen, Torgersen, Torgersen, To…
+$ bill_length_mm    <dbl> 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, 42.0,…
+$ bill_depth_mm     <dbl> 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, 20.2,…
+$ flipper_length_mm <int> 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186, 180…
+$ body_mass_g       <int> 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, 4250,…
+$ sex               <fct> male, female, female, NA, female, male, female, male, NA,…
+$ year              <int> 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 200…
+
+| You are really on a roll!
+
+  |===============              |  52%
+| You can create a tibble by hand using the tibble() constructor, and passing in the
+| column vectors with names. Try evaluating the R expression
+| tibble(sp=penguins$species[1:10],is=penguins$island[1:10]) to see this.
+
+> 
+> 
+> tibble(sp=penguins$species[1:10],is=penguins$island[1:10])
+# A tibble: 10 × 2
+   sp     is       
+   <fct>  <fct>    
+ 1 Adelie Torgersen
+ 2 Adelie Torgersen
+ 3 Adelie Torgersen
+ 4 Adelie Torgersen
+ 5 Adelie Torgersen
+ 6 Adelie Torgersen
+ 7 Adelie Torgersen
+ 8 Adelie Torgersen
+ 9 Adelie Torgersen
+10 Adelie Torgersen
+
+| You are really on a roll!
+
+  |================             |  55%
+| You can read in data directly to tibbles. Many tidyverse functions use snake case
+| with underscores, so for example read_csv() is the tidyverse version of the base-R
+| function read.csv() but returns tibbles instead of data-frames.
+
+...
+
+  |=================            |  57%
+| read_csv() comes in the tidyverse readr package. We won't practice with it right
+| now but we'll use it later in lab.
+
+...
+
+  |=================            |  60%
+| Because tibbles are data-frames, all of the base-R selection semantics work on
+| them. Try using the data-frame selection operator ([,]) to select only the first
+| three rows and the first three columns of penguins using the range operator 1:3 in
+| both row and column selection slots.
+
+> 
+> penguins[1:3, 1:3]
+# A tibble: 3 × 3
+  species island    bill_length_mm
+  <fct>   <fct>              <dbl>
+1 Adelie  Torgersen           39.1
+2 Adelie  Torgersen           39.5
+3 Adelie  Torgersen           40.3
+
+| Your dedication is inspiring!
+
+  |==================           |  62%
+| It's generally best to convert a data-frame to a tibble explicitly using the
+| as_tibble() function when you want to use it with tidyverse functions. Try calling
+| as_tibble() on the built-in R iris data-frame.
+
+> 
+> as_tibble()
+Error:
+! The `x` argument of `as_tibble()` can't be missing as of tibble 3.0.0.
+Run `rlang::last_trace()` to see where the error occurred.
+> as_tibble(tidyverse)
+Error: object 'tidyverse' not found
+> as_tibble()
+Error:
+! The `x` argument of `as_tibble()` can't be missing as of tibble 3.0.0.
+Run `rlang::last_trace()` to see where the error occurred.
+> as_tibble(iris)
+# A tibble: 150 × 5
+   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+          <dbl>       <dbl>        <dbl>       <dbl> <fct>  
+ 1          5.1         3.5          1.4         0.2 setosa 
+ 2          4.9         3            1.4         0.2 setosa 
+ 3          4.7         3.2          1.3         0.2 setosa 
+ 4          4.6         3.1          1.5         0.2 setosa 
+ 5          5           3.6          1.4         0.2 setosa 
+ 6          5.4         3.9          1.7         0.4 setosa 
+ 7          4.6         3.4          1.4         0.3 setosa 
+ 8          5           3.4          1.5         0.2 setosa 
+ 9          4.4         2.9          1.4         0.2 setosa 
+10          4.9         3.1          1.5         0.1 setosa 
+# ℹ 140 more rows
+# ℹ Use `print(n = ...)` to see more rows
+
+| All that practice is paying off!
+
+  |===================          |  64%
+| A very important difference between base-R data-frames and tibbles is that
+| data-frames support the concept of row-names, but row-names don't exist in
+| tibbles. Because row-names are used to record a dimenion of our data, tidyverse
+| insists that such information, if needed, be recorded as a column or field within
+| a tibble. So as_tibble() provides an option to move row-name information to a
+| column with a specified name.
+
+...
+
+  |===================          |  67%
+| To illustrate, inspect the value of the built-in R data-frame mtcars
+
+> 
+> 
+> as_tibble()
+Error:
+! The `x` argument of `as_tibble()` can't be missing as of tibble 3.0.0.
+Run `rlang::last_trace()` to see where the error occurred.
+> as_tibble(mtcars)
+# A tibble: 32 × 11
+     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+ 1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
+ 2  21       6  160    110  3.9   2.88  17.0     0     1     4     4
+ 3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
+ 4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
+ 5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+ 6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
+ 7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+ 8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
+ 9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
+10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
+# ℹ 22 more rows
+# ℹ Use `print(n = ...)` to see more rows
+
+| Not quite right, but keep trying. Or, type info() for more options.
+
+| Evaluate mtcars
+
+> tibble(mtcars)
+# A tibble: 32 × 11
+     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+ 1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
+ 2  21       6  160    110  3.9   2.88  17.0     0     1     4     4
+ 3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
+ 4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
+ 5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+ 6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
+ 7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+ 8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
+ 9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
+10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
+# ℹ 22 more rows
+# ℹ Use `print(n = ...)` to see more rows
+
+| Almost! Try again. Or, type info() for more options.
+
+| Evaluate mtcars
+
+> 
+> print(mtcars)
+                     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+
+| You almost had it, but not quite. Try again. Or, type info() for more options.
+
+| Evaluate mtcars
+
+> 
+> mtcars
+                     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+
+| That's a job well done!
+
+  |====================         |  69%
+| See how the model names appear as row-names? If you call as_tibble() on this
+| data-frame, by default the row-names are dropped. Try it.
+
+> 
+> 
+> as_tibble()
+Error:
+! The `x` argument of `as_tibble()` can't be missing as of tibble 3.0.0.
+Run `rlang::last_trace()` to see where the error occurred.
+> as_tibble(mtcars)
+# A tibble: 32 × 11
+     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+ 1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
+ 2  21       6  160    110  3.9   2.88  17.0     0     1     4     4
+ 3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
+ 4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
+ 5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+ 6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
+ 7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+ 8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
+ 9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
+10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
+# ℹ 22 more rows
+# ℹ Use `print(n = ...)` to see more rows
+
+| You nailed it! Good job!
+
+  |=====================        |  71%
+| Now use up-arrow command line editing to recall the last command, only now add the
+| optional argument rownames="model" to move the row-name information into a column.
+
+> 
+> rownames = "model"
+
+| Nice try, but that's not exactly what I was hoping for. Try again. Or, type info()
+| for more options.
+
+| Evaluate as_tibble(mtcars,rownames="model")
+
+> 
+> as_tibble(mtcars, rownames = "model")
+# A tibble: 32 × 12
+   model              mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+   <chr>            <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+ 1 Mazda RX4         21       6  160    110  3.9   2.62  16.5     0     1     4     4
+ 2 Mazda RX4 Wag     21       6  160    110  3.9   2.88  17.0     0     1     4     4
+ 3 Datsun 710        22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
+ 4 Hornet 4 Drive    21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
+ 5 Hornet Sportabo…  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+ 6 Valiant           18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
+ 7 Duster 360        14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+ 8 Merc 240D         24.4     4  147.    62  3.69  3.19  20       1     0     4     2
+ 9 Merc 230          22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
+10 Merc 280          19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
+# ℹ 22 more rows
+# ℹ Use `print(n = ...)` to see more rows
+
+| You nailed it! Good job!
+
+  |=====================        |  74%
+| The tidyverse is designed to work together in R/tidyverse pipelines, similar to
+| using pipes in bash in which data is passed between functions as tibbles.
+
+...
+
+  |======================       |  76%
+| Instead of wrapping tidyverse functions like filter() around a tibble-generating
+| function like as_tibble() to make an expression like filter(as_tibble(iris),...),
+| we pipe them together using base-R's newish built in pipe operator (|>), which
+| looks like
+| 
+| as_tibble(iris) |> filter(...).
+
+...
+
+  |=======================      |  79%
+| We'll use tidyverse pipelines soon, but for now to illustrate, evaluate the R
+| expression
+| 
+| penguins |> filter(sex == "male" & island == "Torgersen")
+
+> 
+> 
+> penguins |> filter(sex == "male" & island == "Torgersen")
+# A tibble: 23 × 8
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex  
+   <fct>   <fct>              <dbl>         <dbl>             <int>       <int> <fct>
+ 1 Adelie  Torgersen           39.1          18.7               181        3750 male 
+ 2 Adelie  Torgersen           39.3          20.6               190        3650 male 
+ 3 Adelie  Torgersen           39.2          19.6               195        4675 male 
+ 4 Adelie  Torgersen           38.6          21.2               191        3800 male 
+ 5 Adelie  Torgersen           34.6          21.1               198        4400 male 
+ 6 Adelie  Torgersen           42.5          20.7               197        4500 male 
+ 7 Adelie  Torgersen           46            21.5               194        4200 male 
+ 8 Adelie  Torgersen           41.8          19.4               198        4450 male 
+ 9 Adelie  Torgersen           39.7          18.4               190        3900 male 
+10 Adelie  Torgersen           45.8          18.9               197        4150 male 
+# ℹ 13 more rows
+# ℹ 1 more variable: year <int>
+# ℹ Use `print(n = ...)` to see more rows
+
+| Perseverance, that's the answer.
+
+  |=======================      |  81%
+| Did you see how only male penguins form Torgersen island were printed? The ggplot2
+| package is a tidyverse package that accepts tibbles as input. "gg" stands for
+| "Grammar of Graphics" a specific system to specify graphs using layers (similar to
+| how you can add layers in base-R to a plot with functions like lines() and
+| points()). To use, it you need to learn how to write what I call ggplot2 "graph
+| expressions".
+
+...
+
+  |========================     |  83%
+| ggplot2 graph expressions always start with a call to the function ggplot(), and
+| the first argument is the tibble to be plotted when evaluated in a stand alone
+| expression call to ggplot(). Try calling ggplot() on penguins: you should see
+| blank plot started.
+
+> 
+> ggplot()
+
+| One more time. You can do it! Or, type info() for more options.
+
+| evaluate ggplot(penguins)
+
+> ggplot(penguins)
+
+| Keep up the great work!
+
+  |=========================    |  86%
+| Inside the call to ggplot() there is always a call to the aes() function. "aes"
+| stands for "aesthetics", and specifies the mapping from variable names in the
+| input tibble to aesthetics in the graph, such as the x-values, y-values, colors,
+| shapes and so on of the data-points. For example, to start making a barchart of
+| the counts of different species of penguins on each of the three islands, evaluate
+| the R expression
+| 
+| ggplot(penguins, aes(x = island, fill = species))
+
+> 
+> ggplot(penguins, aes(x = island, fill = species))
+
+| Excellent job!
+
+  |==========================   |  88%
+| This specifies that a bar should be placed on the x-axis for every island, and
+| that bars should be filled with colors according to species. Implicit is that the
+| bars should show the counts of species per island. To tell ggplot2 that we want to
+| make a bar chart, we extend our graph expression using the plus operator (+) and
+| call the bar-chart "geom" with the R function geom_bar(). Try it.
+
+> 
+> geom_bar()
+geom_bar: just = 0.5, width = NULL, na.rm = FALSE, orientation = NA
+stat_count: width = NULL, na.rm = FALSE, orientation = NA
+position_stack 
+
+| That's not exactly what I'm looking for. Try again. Or, type info() for more
+| options.
+
+| Use up-arrow command-line editing and type "+ geom_bar()" after ggplot(penguins,
+| aes(x = island, fill = species))
+
+> 
+> ggplot(penguins,aes(x = island, fill = species))
+
+| That's not the answer I was looking for, but try again. Or, type info() for more
+| options.
+
+| Use up-arrow command-line editing and type "+ geom_bar()" after ggplot(penguins,
+| aes(x = island, fill = species))
+
+> ggplot(penguins,aes(x = island, fill = species))
+
+| Give it another try. Or, type info() for more options.
+
+| Use up-arrow command-line editing and type "+ geom_bar()" after ggplot(penguins,
+| aes(x = island, fill = species))
+
+> geom_bar()
+geom_bar: just = 0.5, width = NULL, na.rm = FALSE, orientation = NA
+stat_count: width = NULL, na.rm = FALSE, orientation = NA
+position_stack 
+
+| Not quite! Try again. Or, type info() for more options.
+
+| Use up-arrow command-line editing and type "+ geom_bar()" after ggplot(penguins,
+| aes(x = island, fill = species))
+
+> ggplot(penguins,aes(x = island, fill = species))
+
+| One more time. You can do it! Or, type info() for more options.
+
+| Use up-arrow command-line editing and type "+ geom_bar()" after ggplot(penguins,
+| aes(x = island, fill = species))
+
+> ggplot(penguins,aes(x = island, fill = species))+ geom_bar()
+
+| You got it right!
+
+  |==========================   |  90%
+| Now, to record your work, back in your Quarto notebook at the bottom of the
+| notebook, make a new subsection with the markdown subsection header "### Results",
+| and below this make a new R code chunk. Inside the second R code chunk in your
+| notebook, copy your working ggplot2 graph expression and Render the notebook to
+| validate that the bar chart appears in your notebook. Ask for help if you need it.
+
+...
+
+  |===========================  |  93%
+| Now let's try a different kind of plot with different variables to get a feelf or
+| how this works. Use up-arrow command-line editing to write a new ggplot2 graph
+| expression that associates x with body_mass_g , color with species, and fill with
+| species in the call to aes(), and then uses a call to geom_density() instead of
+| geom_bar() to make overlapping density plots for body mass by species.
+
+> 
+> 
+> geom_density()
+geom_density: na.rm = FALSE, orientation = NA, outline.type = upper
+stat_density: na.rm = FALSE, orientation = NA
+position_identity 
+
+| Not exactly. Give it another go. Or, type info() for more options.
+
+| Use up-arrow command-line editing and follow the instructions exactly, asking for
+| help if anything is unclear.
+
+> ggplot(data = penguins, aes(x = body_mass_g, color = species, fill = species)) +
++     geom_density()
+Warning message:
+Removed 2 rows containing non-finite outside the scale range (`stat_density()`). 
+
+| You nailed it! Good job!
+
+  |============================ |  95%
+| Those densities are hard to see because of opacity. Let's use transparency to make
+| them more visible. Pass the optional aesthetic "alpha=0.5" to geom_density() in
+| order to set the transparency to an intermediate value (alpha ranges from 0 to 1,
+| with full opacity at alpha = 1).
+
+warning messages from top-level task callback 'mini'
+Warning message:
+Removed 2 rows containing non-finite outside the scale range (`stat_density()`). 
+> 
+> 
+> ('stat_density()')
+[1] "stat_density()"
+
+| Nice try, but that's not exactly what I was hoping for. Try again. Or, type info()
+| for more options.
+
+| Use up-arrow command-line editing and follow the instructions exactly, asking for
+| help if anything is unclear.
+
+> ggplot(data = penguins, aes(x = body_mass_g, color = species, fill = species)) +
++     geom_density(alpha = 0.5)
+Warning message:
+Removed 2 rows containing non-finite outside the scale range (`stat_density()`). 
+
+| You got it right!
+
+  |============================ |  98%
+| Now record your work, back in your Quarto notebook make a new R code chunk below
+| the one that you just added. Inside the second R code chunk in your notebook, copy
+| your working ggplot2() graph expression and Render the notebook to validate that
+| the bar chart appears in your notebook.
+
+...
+
+  |=============================| 100%
+| Great work! Congratulations on completing tAPP21! Please render your Quarto
+| Notebook and turn in the rendered HTML output to CatCourses. You can save the
+| workspace image if and when you quit R.
+
+...

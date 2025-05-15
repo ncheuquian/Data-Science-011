@@ -1,0 +1,161 @@
+---
+title: "DSC 011 Sp25 tAPP 23: Authoring in Markdown with Zotero and BibTeX for Automated Citation Management"
+author: "Nico Cheuquian"
+date: today
+format:   
+  html:
+    embed-resources: true
+    toc: true
+    toc-depth: 4
+    number-sections: true
+editor: source
+execute:
+  echo: true
+  browser: true
+urlcolor: blue
+linkcolor: blue
+bibliography: "DSC-011.bib"
+---
+
+## Introduction
+
+### About this Assignment
+
+This quarto notebook is a template for completion of tAPP23 on April 28, 2025 in DSC 011: Computing and Statistical Programming. It is written for execution in RStudio on a Mac or in WSL2-Ubuntu or other Linux distribution on a Windows machine.
+
+### Automated Citation and References Management in RStudio
+
+A very important skill in academic authoring, particularly in data science, is being able to accurately and correctly cite sources for data or methods that we make use of. RMarkdown and Quarto notebooks offer a  powerful system for citations and automatically formatting references into notebooks that we will learn how to use today. In the process of this, we will gain a deeper understanding of markup languages in general. These skills and understandings are key to effectively and ethically communicating data science to other people. 
+
+### Markup Languages and Free Open-Source Authoring Tools and Services
+
+Programming languages enable us to unambiguously and correctly communicate algorithms to humans and machines. Similarly, markup languages enable us to unambiguously and correctly communicate documents to humans and machines. Besides [Git-Flavored Markdown](https://github.github.com/gfm/) in GitHub README files, extended [CommonMark](https://commonmark.org) Markdown in [Jupyter notebooks](https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html), [RMarkdown](https://rmarkdown.rstudio.com) and [Quarto multi-language markdown](https://quarto.org/docs/guide/) in RStudio, effective data science authoring requires us to know more about other markup languages such as [HTML](https://www.w3schools.com/html/html_intro.asp), [YAML](https://yaml.org), and [$\LaTeX$](https://www.latex-project.org), as well as Free Open-Source tools and services like [Pandoc](https://pandoc.org), [Zotero](https://www.zotero.org), [BibTeX](https://www.bibtex.org) and [Overleaf](https://www.overleaf.com).
+
+### Today's Lesson: Skills and Goals
+
+In today's lesson we will learn skills and knowledge concerning:
+
+1. Installation and Use of Zotero, the free bibliographic database system in Linux/UNIX.
+2. Installation and Use of Zotero Web-Browser plug-ins for easy scraping of bibliographic data into Zotero bibliographic collections.
+3. `BibTeX` format, its $\LaTeX$ origins, `pdflatex` and Overleaf (Homework: make and share an academic CV in $\LaTeX$/Overleaf and receive and give guided peer feedback within your team, via GitHub). 
+3. Exporting/importing citations from the UC Merced Library Search Portal into Zotero.
+4. Importing citations into Zotero given unique bibliographic identifiers such as PubMed IDs. 
+5. Saving collections/databases of citations as `BibTeX` bibliographic database files (`.bib`). 
+6. Associating a given `BibTeX` bibliographic database file with a Quarto or RMarkdown notebook in RStudio through YAML. 
+7. Authoring with citations in markdown and automatic formatting of References in RStudio. 
+
+## Assignment
+
+### Create Assignment Project Directory
+
+1. In RStudio, create a new project for this lab by menuing through File -> New Project..., saving files and their workspace, and creating a new directory for tAPP23 under their course project directory. 
+
+### Personalize and Rename your Notebook file
+
+1. Edit the YAML to make yourself the author of this notebook. 
+2. Rename the notebook to include your first initial and last name and save it in the new project directory for this tAPP.
+
+### Install and Use Zotero in Linux/UNIX
+
+1. [Install Zotero](https://www.zotero.org/download/), see [installation help](https://www.zotero.org/support/installation). Windows users should install both Zotero in Ubuntu Linux first, and then the Windows version later (after lecture today). 
+
+2. Open Zotero in Mac or Linux and Make a new Bibliographic Collection with the name "DSC-011". leave this Collection selected in the Zotero left side-bar.
+
+### Scrape References with Zotero Plug-Ins in Linux/UNIX Web-Browsers 
+
+0. Windows WSL2-Ubuntu users should check if they already have `firefox` web-browser installed on their Linux sides (try entering `firefox` in the shell). If they do not, they should [use one of five methods to install firefox on Ubuntu](https://www.makeuseof.com/ways-install-firefox-on-ubuntu/#:~:text=Firefox%20is%20a%20free%20and,a%20Snap%20package%20by%20default).
+
+1. [Install Zotero Connector](https://www.zotero.org/download/) for `firefox` or other Linux/UNIX web-browser. 
+
+2. In your Zotero plug-in-enabled Web-Browser, navigate to the page for Crameri *et al.* (2020) in *Nature Communications* entitled ["The misuse of colour in science communication"](https://www.nature.com/articles/s41467-020-19160-7). 
+
+3. Ensuring that the "DSC-011" Collection is selected in Zotero, press the Zotero Connector button in your web-browser to add the citation to the DSC-011 collection. You should verify that the record appears there.
+
+### Clone Overleaf Project and Compile with `pdflatex` in Linux/UNIX
+
+[Overleaf](https://www.overleaf.com) is a $\LaTeX$-based collaborative authoring platform, the perfect place to asynchronously and collaboratively write a manuscript, book, or slide-show with co-authors. Unlike Google Docs, with git-based version control and the ability to clone Overleaf projects with git, you can author documents and render/compile them to PDF or other formats completely offline. Importantly, UC Merced students have free access to [Overleaf Premium](https://www.overleaf.com/learn/how-to/Overleaf_premium_features) service through their UC Merced credentials. 
+
+1. [Login to Overleaf with SSO](https://www.overleaf.com/sso-login). 
+
+2. In Ubuntu `firefox` or other Linux/UNIX browser, navigate to the [Capra Lab Manuscript Template](https://www.overleaf.com/latex/templates/capra-lab-manuscript-template/mrtmxhjdyzvz) and click "Open as Template".
+
+3. In the Overleaf Editor app that opens in your Browser, click on the Overleaf icon in the upper-left corner.
+
+4. In the menu side-bar that pops-up, under "Sync" click on "Git".
+
+5. In the page that pops-up copy the `git clone` command that you see.
+
+6. In your Linux/UNIX shell, clone your Overleaf project with `git clone` command that you copied in the previous step.
+
+7. `cd` into the local git repository for your Overleaf project, and inspect the files with `ls`.
+
+8. Install a $\LaTeX$ Distribution. Mac Users can start with BasicTeX by `brew install basictex` and WSL2-Ubuntu users should run `sudo apt update` and `sudo apt install texlive-latex-recommended`.
+
+9. Compile the $\LaTeX$ project in your cloned repo. Execute these commands:
+
+```
+pdflatex 0main.tex
+biber 0main
+pdflatex 0main.tex
+pdflatex 0main.tex
+md5sum 0main.pdf
+```
+
+10. Copy-and-paste the return value of the last command, ending in "0main.pdf", inside the double quotes in the following code chunk to test if you have completed this step.
+
+```{r}
+digest::digest("c81f41ff4f8f5d85834bebd18cc3df19") == "c81f41ff4f8f5d85834bebd18cc3df19" 
+```
+
+
+11. In your shell, execute the Bash command `less library.bib` to inspect the contents of the BibTeX bibliographic library file. This is the format and system for references that RStudio also uses to format refereneces for RMarkdown and Quarto notebooks. Type "q" to quit `less`.
+
+12. Open the file "0main.pdf" on your system and inspect the contents.
+
+### Importing References to Zotero from Bibliographic/Library Databases 
+
+1. In any web-browser on your system, navigate to the [UC Merced Library](http://library.ucmerced.edu) portal. 
+
+2. In the search box, enter the query "Entropy and Diversity".
+
+3. In your search results, the top hit should be "Entropy and Diversity: The Axiomatic Approach" by Tom Leinster. Select that record. 
+
+4. Find the button "Export BibTeX". Under the Encoding menu that pops up, select "UTF-8." A download will commence with the name `Primo_BibTeX_Export.bib`. In mac, you can click this file to import to Zotero, depending on your "Open with..." association in Finder for `.bib` files. Otherwise and generally, you can menu File -> Import... in Zotero and import the downloaded file from the library.
+
+5. The import will appear in a new collection. Drag the record onto the DSC-011 collection to add it to that collection.
+
+### Importing References to Zotero with a Unique Bibliographic ID 
+
+1. In the Zotero main window, look for a button that looks like a magic wand with a green plus botton and press it. 
+2. Make sure the DSC-011 Collection is selected.
+2. A wizard should pop-up with a search field, and a prompt to "Enter ISBNs, DOIs, PMIDs" etc. 
+3. Enter the ISBN for the "R for Data Science, 2e" book published by O'Reilly. The ISBN is 9781492097402 .
+4. Verify that the reference was added to the DSC-011 collection.
+
+### Authoring with Automated Reference Management in RStudio
+
+1. In the Zotero main window, select all three references in the DSC-011 Collection. 
+2. Menu Edit -> Copy as BibTeX. 
+3. In RStudio, menu File -> New File -> Text File.
+4. Paste your clipboard data into the new file that opens in RStudio. You should see three BibTeX references appear, the same ones we added to Zotero.
+5. Save the buffer into a new BibTeX file called `DSC-011.bib` in the tAPP23 directory. 
+6. In the YAML header of your notebook file, below `linkcolor: blue` and above the header line (`---`), paste the code `bibliography: "DSC-011.bib"` on a new line.
+7. Test that all is correct by trying to render the notebook file in RStudio.
+8. In the section below starting with markdown "## Narrative", copy and paste the following markdown
+
+## Narrative
+
+The R for Data Science, 2e book [@wickham_r_2023] is foundational to mastering the tidyverse. 
+
+Apply principles of good color design such as those enunciated by @crameri_misuse_2020 when making figures. 
+
+Also, the recent monograph on Entropy and Diversity: An Axiomatic approach [@leinster_entropy_2021] is very useful and interesting to measure the diversity of multivariate frequency responses.
+
+## References
+
+## Homework
+
+Overleaf provides multiple templates for resumes and curriculum vitae, also called "CVs". Resumes and CVs are different, we use resumes to apply for industry jobs but CVs to apply for academic research positions. They typically show different information. Use Overleaf templates and web-search to look for good examples. 
+Although, when making a CV, the educational selection often starts with a Bachelor's degree, sometimes they include a high school degree also. It is common for students to put a date of anticipated award while they are working for a degree. That is to say, if you make a CV, you should put your intended degree from UC Merced and anticipated award date on it.
+
+For your credit-bearing homework, as an exercise, make a CV in $\LaTeX$/Overleaf to apply to a graduate school of your choice. Your final CV will be due by 1:30 pm start of Lecture in one week, on Monday, April 5th. At that time you will share your CV with your team-mates and provide guided peer feedback to your team-mates on their CVs. You will then have a chance to correct and update your CVs in new versions. Your draft CV, all of the peer review of your team, and your final CVs will be turned in and graded in a team-based Git repository on the last day of class, Friday, May 9.

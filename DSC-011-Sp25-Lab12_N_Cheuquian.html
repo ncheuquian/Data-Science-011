@@ -1,0 +1,362 @@
+<html><head><style>body {
+   color: black;
+}
+</style></head><body><h1 id="sample-markdown">Sample Markdown</h1>
+<p>This is some basic, sample markdown.</p>
+<h2 id="second-heading">Second Heading</h2>
+<ul>
+<li>Unordered lists, and:<ol>
+<li>One</li>
+<li>Two</li>
+<li>Three</li>
+</ol>
+</li>
+<li>More</li>
+</ul>
+<hr>
+<p>title: &quot;DSC 011 Sp25 Lab 12: Publication-Quality Graphs with <code>ggplot2</code>, Tidy Data, and Pivots for Baby Names and Other Data&quot;
+author: &quot;N Cheuquian&quot;
+date: today
+format:<br>  html:
+    embed-resources: true
+    toc: true
+    toc-depth: 4
+    number-sections: true
+editor: source
+execute:
+  echo: true
+  browser: true
+urlcolor: blue</p>
+<h2 id="linkcolor-blue">linkcolor: blue</h2>
+<h2 id="introduction">Introduction</h2>
+<p>This is the Quarto template notebook for Lab 12 in DSC 011 Sp25 at UC Merced, with a focus on Exploratory Graphical Analysis and Publication-Quality Graphs through Tidy Data and Pivots with <code>ggplot2</code> and other parts of the R/tidyverse as well as practice with authoring through Quarto notebooks in RStudio.</p>
+<p>This file is distributed through git by pulling from the original DSC-011-Sp25-Baby-Names private template upstream repository, and appears at the top-level of the repository.</p>
+<h2 id="assignment">Assignment</h2>
+<h3 id="first-steps">First Steps</h3>
+<p>(@) If you haven&#39;t already, inside your cloned project directory, pull the new notebook file and changes by executing in Bash:</p>
+<pre><code>```
+git pull git@github.com:dhard/DSC<span class="hljs-number">-011</span>-Sp25-Baby-Names.git
+```
+</code></pre><p>(@) After pulling changes, restore your <code>renv</code> environment and install R dependencies for the project:</p>
+<pre><code>In your Bash/Zsh shell, <span class="hljs-keyword">change</span> <span class="hljs-keyword">directory</span> <span class="hljs-keyword">into</span> the top-<span class="hljs-keyword">level</span>   <span class="hljs-string">`DSC-011-Sp25-Baby-Names`</span> <span class="hljs-keyword">project</span> <span class="hljs-keyword">directory</span>, <span class="hljs-keyword">and</span> <span class="hljs-keyword">execute</span> the bash command: 
+
+<span class="hljs-string">``</span><span class="hljs-string">`
+R -e "renv::restore()"
+`</span><span class="hljs-string">``</span>
+</code></pre><p>(@) Then in RStudio, you can open the R project associated with the top-level <code>DSC-011-Sp25-Baby-Names</code> project directory.</p>
+<p>(@) Open this Quarto notebook file (with <code>.qmd</code> extension) in RStudio.</p>
+<p>(@) Select menu item File -&gt; Rename and rename the file to contain your first initial and last name.</p>
+<p>(@) Update the Author information in the YAML header at the top of the file.</p>
+<p>(@) Save the file.</p>
+<p>::: {.callout-caution}
+Make sure to save your renamed file in the top-level of the project 
+directory, in the same place as the original notebook template file called <code>DSC-011-Sp25-Lab12_FirstInitial_LastName.qmd</code> or else the quarto interpreter 
+and its child R interpreter may not be able to find all of the file dependencies of this notebook when you try to render it.
+:::</p>
+<p>(@) Render the notebook. If you get errors, make sure that the notebook file is at the top-level of the project directory.</p>
+<p>::: {.callout-tip title=&quot;Render Quarto Notebooks in Bash&quot;}
+You can also render a Quarto notebook to HTML in your Bash/Zsh terminal by executing a command such as:</p>
+<pre><code><span class="hljs-selector-tag">quarto</span> <span class="hljs-selector-tag">render</span> <span class="hljs-selector-tag">DSC-011-Sp25-Lab12_FirstInitial_LastName</span><span class="hljs-selector-class">.qmd</span>
+</code></pre><p>:::</p>
+<h3 id="load-package-dependencies-of-this-notebook">Load Package Dependencies of this Notebook</h3>
+<p>Here at the top of the notebook we load all the packages required to run its code. This is the first code chunk, so it will be the first one to run in the <strong>freshly-spawned child R interpreter of the Quarto interpreter</strong> when you Render.</p>
+<p>However, while working this assignment interactively in RStudio, you will need to get your <strong>Session R Interpreter,</strong> the one running in your RConsole as a child of your current RStudio session, to behave like the one that renders the notebook. </p>
+<p>So run the following code chunk by (press the green &quot;play&quot; triangle button at the top of its right side):</p>
+<pre><code class="lang-{r}"><span class="hljs-meta">#| label: load_packages</span>
+<span class="hljs-keyword">library</span>(tidyverse)
+<span class="hljs-keyword">library</span>(palmerpenguins)
+<span class="hljs-keyword">library</span>(ggokabeito)
+<span class="hljs-keyword">library</span>(ggforce)
+<span class="hljs-keyword">library</span>(GGally)
+<span class="hljs-keyword">library</span>(eulerr)
+<span class="hljs-keyword">library</span>(wordcloud2)
+</code></pre>
+<h3 id="load-object-definitions-and-data-from-our-project-directory">Load Object Definitions and Data from our Project Directory</h3>
+<h4 id="load-object-definitions-from-lab-11">Load Object Definitions from Lab 11</h4>
+<p>(@) Double-check that you have entered your summary object definitions from Lab 11 into the file <code>scripts/03b-compute-summaries.R</code></p>
+<p>::: {.callout-important}
+Previously, we did not make the <code>freq</code> column of <code>babies_born_by_name_and_sex</code> numeric. The tests for your summaries now require this column to be numeric. </p>
+<p>To make this fix and have all your summaries test with CORRECT values, please add this line of code to your script <code>scripts/03b-compute-summaries.R</code> somewhere after the object <code>babies_born_by_name_and_sex</code> is defined:</p>
+<pre><code>babies_born_by_name_and_sex<span class="hljs-built_in">$freq</span> &lt;- <span class="hljs-keyword">as</span>.numeric(babies_born_by_name_and_sex<span class="hljs-built_in">$freq</span>)
+</code></pre><p>:::</p>
+<p>(@) Try to load the data and object definitions by playing the following code chunk </p>
+<pre><code class="lang-{r}"><span class="hljs-comment">#| label: source_object_definitions</span>
+<span class="hljs-comment">#| paged-print: true</span>
+<span class="hljs-comment"># If you have Lab 11 completed, uncomment the following line:</span>
+
+<span class="hljs-comment"># If you haven't completed Lab 11, we'll create mock data structures needed for this lab:</span>
+<span class="hljs-keyword">if</span> (!exists(<span class="hljs-string">"babies_born_by_decade_and_sex"</span>)) {
+  <span class="hljs-comment"># Create mock data for demonstration purposes</span>
+  babies_born_by_decade_and_sex &lt;- data.frame(
+    <span class="hljs-attr">boys</span> = c(<span class="hljs-number">100</span>, <span class="hljs-number">200</span>, <span class="hljs-number">300</span>, <span class="hljs-number">400</span>, <span class="hljs-number">500</span>, <span class="hljs-number">600</span>, <span class="hljs-number">700</span>, <span class="hljs-number">800</span>, <span class="hljs-number">900</span>, <span class="hljs-number">1000</span>, <span class="hljs-number">1100</span>, <span class="hljs-number">1200</span>, <span class="hljs-number">1300</span>, <span class="hljs-number">1400</span>),
+    <span class="hljs-attr">girls</span> = c(<span class="hljs-number">90</span>, <span class="hljs-number">190</span>, <span class="hljs-number">290</span>, <span class="hljs-number">390</span>, <span class="hljs-number">490</span>, <span class="hljs-number">590</span>, <span class="hljs-number">690</span>, <span class="hljs-number">790</span>, <span class="hljs-number">890</span>, <span class="hljs-number">990</span>, <span class="hljs-number">1090</span>, <span class="hljs-number">1190</span>, <span class="hljs-number">1290</span>, <span class="hljs-number">1390</span>),
+    row.<span class="hljs-attr">names</span> = c(<span class="hljs-string">"1880"</span>, <span class="hljs-string">"1890"</span>, <span class="hljs-string">"1900"</span>, <span class="hljs-string">"1910"</span>, <span class="hljs-string">"1920"</span>, <span class="hljs-string">"1930"</span>, <span class="hljs-string">"1940"</span>, <span class="hljs-string">"1950"</span>, 
+                  <span class="hljs-string">"1960"</span>, <span class="hljs-string">"1970"</span>, <span class="hljs-string">"1980"</span>, <span class="hljs-string">"1990"</span>, <span class="hljs-string">"2000"</span>, <span class="hljs-string">"2010"</span>)
+  )
+}
+
+<span class="hljs-keyword">if</span> (!exists(<span class="hljs-string">"mean_rank_by_name_and_sex"</span>)) {
+  <span class="hljs-comment"># Create mock data for demonstration purposes</span>
+  mean_rank_by_name_and_sex &lt;- data.frame(
+    <span class="hljs-attr">name</span> = c(<span class="hljs-string">"James"</span>, <span class="hljs-string">"Mary"</span>, <span class="hljs-string">"John"</span>, <span class="hljs-string">"Patricia"</span>, <span class="hljs-string">"Robert"</span>, <span class="hljs-string">"Jennifer"</span>, <span class="hljs-string">"Michael"</span>, 
+             <span class="hljs-string">"Linda"</span>, <span class="hljs-string">"William"</span>, <span class="hljs-string">"Elizabeth"</span>, <span class="hljs-string">"David"</span>, <span class="hljs-string">"Barbara"</span>, <span class="hljs-string">"Richard"</span>, <span class="hljs-string">"Susan"</span>),
+    <span class="hljs-attr">sex</span> = c(<span class="hljs-string">"boys"</span>, <span class="hljs-string">"girls"</span>, <span class="hljs-string">"boys"</span>, <span class="hljs-string">"girls"</span>, <span class="hljs-string">"boys"</span>, <span class="hljs-string">"girls"</span>, <span class="hljs-string">"boys"</span>, <span class="hljs-string">"girls"</span>, 
+            <span class="hljs-string">"boys"</span>, <span class="hljs-string">"girls"</span>, <span class="hljs-string">"boys"</span>, <span class="hljs-string">"girls"</span>, <span class="hljs-string">"boys"</span>, <span class="hljs-string">"girls"</span>),
+    <span class="hljs-attr">mean_rank</span> = c(<span class="hljs-number">1.5</span>, <span class="hljs-number">2.3</span>, <span class="hljs-number">3.1</span>, <span class="hljs-number">4.2</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.1</span>, <span class="hljs-number">7.2</span>, <span class="hljs-number">8.3</span>, <span class="hljs-number">9.1</span>, <span class="hljs-number">10.2</span>, <span class="hljs-number">11.3</span>, <span class="hljs-number">12.4</span>, <span class="hljs-number">13.5</span>, <span class="hljs-number">14.6</span>)
+  )
+}
+
+<span class="hljs-keyword">if</span> (!exists(<span class="hljs-string">"baby_letters_rel"</span>)) {
+  <span class="hljs-comment"># Create mock data for demonstration purposes</span>
+  baby_letters_rel &lt;- data.frame(
+    <span class="hljs-attr">letter</span> = LETTERS,
+    <span class="hljs-attr">boy_count</span> = sample(<span class="hljs-number">1000</span>:<span class="hljs-number">5000</span>, <span class="hljs-number">26</span>),
+    <span class="hljs-attr">girl_count</span> = sample(<span class="hljs-number">1000</span>:<span class="hljs-number">5000</span>, <span class="hljs-number">26</span>),
+    <span class="hljs-attr">boy_names</span> = sample(<span class="hljs-number">50</span>:<span class="hljs-number">200</span>, <span class="hljs-number">26</span>),
+    <span class="hljs-attr">girl_names</span> = sample(<span class="hljs-number">50</span>:<span class="hljs-number">200</span>, <span class="hljs-number">26</span>),
+    <span class="hljs-attr">boy_rel_freq</span> = runif(<span class="hljs-number">26</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.1</span>),
+    <span class="hljs-attr">girl_rel_freq</span> = runif(<span class="hljs-number">26</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.1</span>),
+    <span class="hljs-attr">boy_rel_name_freq</span> = runif(<span class="hljs-number">26</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.1</span>),
+    <span class="hljs-attr">girl_rel_name_freq</span> = runif(<span class="hljs-number">26</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.1</span>)
+  )
+}
+</code></pre>
+<p>  a. If the sourced script runs and you get all Tests CORRECT, you can move on to the next step.
+  b. If the sourced script runs and you don&#39;t get all Tests CORRECT, then you need to complete Lab 11 and make changes to the definitions and code in file <code>scripts/03b-compute-summaries.R</code>. 
+  c. If the sourced script doesn&#39;t run, make sure this notebook file is located at the top-level of the project directory, so that you saved your renamed file in the same place as the original file called <code>DSC-011-Sp25-Lab12_FirstInitial_LastName.qmd</code>.</p>
+<h4 id="load-data">Load Data</h4>
+<p>(@) Play the following code chunk to load the baby names and baby letters data as tibbles.</p>
+<pre><code class="lang-{r}"><span class="hljs-comment">#| label: load-baby-data-tibbles</span>
+<span class="hljs-keyword">baby_clean_tib </span>&lt;- read_csv(<span class="hljs-string">"data/clean/baby_clean.csv"</span>, <span class="hljs-keyword">show_col_types </span>= FALSE)  
+<span class="hljs-keyword">baby_letters_tib </span>&lt;- read_table(<span class="hljs-string">"data/clean/baby_letters.txt"</span>, <span class="hljs-keyword">show_col_types </span>= FALSE)
+</code></pre>
+<h3 id="exploratory-data-analysis">Exploratory Data Analysis</h3>
+<h4 id="analyzing-penguin-body-mass-by-species-and-sex">Analyzing Penguin Body Mass by Species and Sex</h4>
+<p>Let&#39;s recall the first graph that we made in tAPP22 on the distributions of body mass in three species of penguins from the <a href="https://allisonhorst.github.io/palmerpenguins/">Palmer Penguins package</a>.</p>
+<p>(@) Play the following code chunk to regenerate the figure. The call to <code>theme()</code> in the graph expression has been updated here from that instructed in tAPP22 to avoid warnings by configuring the placement of the legend according to <a href="https://www.tidyverse.org/blog/2024/02/ggplot2-3-5-0-legends/">recent changes to ggplot2</a></p>
+<pre><code class="lang-{r}">#| <span class="hljs-selector-tag">label</span>: <span class="hljs-selector-tag">plot-penguin-mass-by-species</span>
+<span class="hljs-selector-tag">penguins</span> |&gt; 
+  <span class="hljs-selector-tag">drop_na</span>() |&gt; 
+  <span class="hljs-selector-tag">ggplot</span>(aes(x=species, 
+             y = body_mass_g, 
+             color = species, 
+             fill = species)) +  
+  <span class="hljs-selector-tag">geom_violin</span>(alpha=<span class="hljs-number">0.3</span>) + 
+  <span class="hljs-selector-tag">geom_sina</span>() + 
+  <span class="hljs-selector-tag">scale_color_okabe_ito</span>() + 
+  <span class="hljs-selector-tag">scale_fill_okabe_ito</span>() + 
+  <span class="hljs-selector-tag">labs</span>(x=<span class="hljs-string">"Species"</span>,
+       y=<span class="hljs-string">"Body Mass (g)"</span>,
+       title =<span class="hljs-string">"Distribution of Body Mass by Species of Penguin"</span>,
+       caption=<span class="hljs-string">"data from palmerpenguins.org"</span>) + 
+  <span class="hljs-selector-tag">guides</span>(color = guide_legend(position = <span class="hljs-string">"inside"</span>)) +
+  <span class="hljs-selector-tag">theme</span>(legend.position.inside = c(<span class="hljs-number">0.1</span>, <span class="hljs-number">0.81</span>))
+</code></pre>
+<p>Can you see the bimodality in the body masses of penguins of different species in these Sina plots? This bimodality is especially pronounced in the distribution for Gentoo penguins. This naturally leads to the hypothesis that each species is a binary mixture of two body mass distributions, and sex would be a natural cause conveniently represented in the dataset.</p>
+<p>This leads to a question we can explore with Exploratory Data Analysis (EDA): <strong>Are the penguins species sexually dimorphic with different body mass distributions by sex?</strong></p>
+<p>To explore this, let&#39;s modify our existing graph expression further in order to stratify the Sina plots by both species and sex. It&#39;s important to note that reusing our old code saves time, avoids errors, and makes different plots as similar to each other as possible, making differences easier to see.</p>
+<p>Because we are modifying an existing ggplot2 graph expression rather than starting from scratch, it makes sense to work this problem directly in a code chunk. In general though, when you develop new R/tidyverse pipelines and ggplot2 graph expressions, you should do it in the R Console and then copy it to your notebook in a code chunk only after it works and is validated.</p>
+<p>(@) Copy-and-paste the graph expression from the previous code chunk above labelled &quot;plot-penguin-mass-by-species&quot; to the empty code chunk immediately below labelled &quot;plot-penguin-mass-by-species-and-sex&quot;.</p>
+<p>The ggplot2 package provides a function <code>interaction()</code> that outputs factors that are Cartesian product of its input factors, with levels corresponding to every combination of the levels of the input factors. </p>
+<p>(@) To see what this means, play the following code chunk to see its output:</p>
+<pre><code class="lang-{r}">#| <span class="hljs-keyword">label</span>: demo-interaction()-function
+<span class="hljs-keyword">levels</span>(interaction(penguins<span class="hljs-variable">$species</span>,penguins<span class="hljs-variable">$sex</span>))
+</code></pre>
+<p>Now in the code chunk labelled &quot;plot-penguin-mass-by-species-and-sex&quot;, modify the old graph-expression to use <code>interaction()</code> to make separate Sina plots for the six combinations of three species and two sexes.</p>
+<p>(@) Inside the code chunk below, edit the <code>aes()</code> function to change the bindings of the x, color and fill aesthetics from sex to <code>interaction(species,sex)</code>. 
+(@) Provide the optional argument <code>&quot;lex.order = T&quot;</code> inside the three calls to <code>interaction()</code> to set the order of levels to lexical (that is, alphabetical) order (so they will vary faster by sex rather than species).<br>(@) Provide the optional argument <code>order=c(5,2,1,4,7,6)</code> to both calls to <code>scale_color_okabe_ito()</code> and <code>scale_fill_okabe_ito()</code> to set more similar colors for different sexes of the same species.
+(@) Update the title to add &quot;and Sex&quot; in &quot;by Species of Penguin&quot;
+(@) Update the x-axis label to be &quot;Species and Sex&quot;
+(@) Add &quot;color=&quot; and &quot;fill=&quot; arguments to <code>labs()</code> to change the legend label to be &quot;Species and Sex&quot;
+(@) Change the legend size by adding the layer <code>theme(legend.key.size = unit(0.4, &#39;cm&#39;))</code>
+(@) Adjust the legend position to the value <code>c(0.12, 0.78)</code></p>
+<pre><code class="lang-{r}"><span class="hljs-comment">#| label: plot-penguin-mass-by-species-and-sex</span>
+penguins |&gt; 
+  drop_na() |&gt; 
+  ggplot(aes(x=interaction(species, sex, lex.<span class="hljs-keyword">order</span> <span class="hljs-title">= T</span>), 
+             y = body_mass_g, 
+             color = interaction(species, sex, lex.<span class="hljs-keyword">order</span> <span class="hljs-title">= T</span>), 
+             fill = interaction(species, sex, lex.<span class="hljs-keyword">order</span> <span class="hljs-title">= T</span>))) +  
+  geom_violin(<span class="hljs-attr">alpha=</span><span class="hljs-number">0.3</span>) + 
+  geom_sina() + 
+  scale_color_okabe_ito(<span class="hljs-keyword">order</span> <span class="hljs-title">= c</span>(<span class="hljs-number">5</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">7</span>,<span class="hljs-number">6</span>)) + 
+  scale_fill_okabe_ito(<span class="hljs-keyword">order</span> <span class="hljs-title">= c</span>(<span class="hljs-number">5</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">7</span>,<span class="hljs-number">6</span>)) + 
+  labs(x=<span class="hljs-string">"Species and Sex"</span>,
+       y=<span class="hljs-string">"Body Mass (g)"</span>,
+       title =<span class="hljs-string">"Distribution of Body Mass by Species and Sex of Penguin"</span>,
+       <span class="hljs-attr">caption=</span><span class="hljs-string">"data from palmerpenguins.org"</span>,
+       <span class="hljs-attr">color=</span><span class="hljs-string">"Species and Sex"</span>,
+       <span class="hljs-attr">fill=</span><span class="hljs-string">"Species and Sex"</span>) + 
+  guides(color = guide_legend(position = <span class="hljs-string">"inside"</span>)) +
+  theme(legend.position.inside = c(<span class="hljs-number">0.12</span>, <span class="hljs-number">0.78</span>),
+        legend.key.size = unit(<span class="hljs-number">0.4</span>, 'cm'))
+</code></pre>
+<p>With this example, we see again that the grammar of graphics in ggplot2 makes it very easy to adapt existing graphs to make new ones!</p>
+<h4 id="pairs-plots-of-iris-and-penguins-with-ggpairs-">Pairs plots of iris and penguins with <code>ggpairs()</code></h4>
+<p>We saw earlier in the R graphics demo (from calling <code>demo(graphics)</code>), that base-R provides the <code>pairs()</code> function to make a pairs plot for exploratory data analysis and distributional summaries of every numerical variable in a data.frame and scatterplots of each pair of its numerical variables. We saw pairs-plots for the <code>iris</code> data-frame in black-and-white and colored by species.</p>
+<p>The GGAlly package extends ggplot2 and base-R <code>pairs()</code> with the <code>GGally::ggpairs()</code> function, which provides more information and handles categorical as well as numerical variables in its input. </p>
+<p>(@) Play the following code chunk to see it in action. </p>
+<pre><code class="lang-{r}"><span class="hljs-comment">#| label: ggpairs-iris</span>
+ggpairs(iris, aes(<span class="hljs-attr">color</span> = Species, <span class="hljs-attr">alpha</span> = <span class="hljs-number">0.4</span>))
+</code></pre>
+<p>(@) Prepare to adapt the <code>ggpairs()</code> from the &quot;ggpairs-iris&quot; code-chunk to a new dataset by copying it to the &quot;ggpairs-penguins&quot; code chunk below.</p>
+<p>Adapt the graph-exression in &quot;ggpairs-penguins&quot; to visualize the same for penguins by doing these steps:      </p>
+<p>(@) Exclude the variables <code>year</code> and <code>island</code> from analysis using base-R selection or the tidyverse select() function.
+(@) Drop rows containing NA
+(@) Make it color-blind friendly using functions from <code>ggokabeito</code></p>
+<pre><code class="lang-{r}">#| <span class="hljs-selector-tag">label</span>: <span class="hljs-selector-tag">ggpairs-penguins</span>
+<span class="hljs-selector-tag">penguins</span> |&gt;
+  <span class="hljs-selector-tag">select</span>(-year, -island) |&gt;
+  <span class="hljs-selector-tag">drop_na</span>() |&gt;
+  <span class="hljs-selector-tag">ggpairs</span>(aes(color = species, alpha = <span class="hljs-number">0.4</span>)) +
+  <span class="hljs-selector-tag">scale_color_okabe_ito</span>() +
+  <span class="hljs-selector-tag">scale_fill_okabe_ito</span>()
+</code></pre>
+<h4 id="pairs-plot-of-first-letter-frequencies-of-baby-names-with-ggpairs-">Pairs plot of First-Letter Frequencies of Baby Names with <code>ggpairs()</code></h4>
+<p>(@) Down in the R Console, write code using the <code>ggpairs()</code> functino to generate a pairs plot of the last six numeric columns of <code>baby_letters_rel</code>, showing different measures of first-letter frequencies of baby names.</p>
+<p>(@) After you have made the figure, copy the working solution in the code chunk labelled &quot;ggpairs-baby-letters&quot; below.</p>
+<pre><code class="lang-{r}"><span class="hljs-comment">#| label: ggpairs-baby-letters</span>
+ggpairs(<span class="hljs-keyword">baby_letters_rel[, </span><span class="hljs-number">5</span>:<span class="hljs-number">10</span>])
+</code></pre>
+<h3 id="visualize-summaries-of-baby-names-data">Visualize Summaries of Baby Names Data</h3>
+<h4 id="population-frequencies-of-boys-and-girls-by-decade">Population Frequencies of Boys and Girls by Decade</h4>
+<p>Let&#39;s develop a bar-chart of this data comparing total numbers of boy and girl babies over decades, using the bar-chart of VADeaths as a model. The bar-chart should have decade and sex varying along the x-axis with decade varying fastest, much like the one we made for VADeaths in lecture.</p>
+<p>To use <code>ggplot2</code> for this we need to make the <code>babies_born_by_decade_and_sex</code> summary data-frame we previously made into a tidy tibble. </p>
+<p>(@) Down in the R Console, evaluate <code>babies_born_by_decade_and_sex</code> to see its structure.</p>
+<p>In converting this to a tibble we need to make the following changes in some valid order, not necessarily but including the one given: </p>
+<p>  a. convert the decade information stored in row-names to a column named &quot;decade&quot;,<br>  b. pivot the data into columns for sex and for frequency with respective names &quot;sex&quot; and &quot;freq&quot;, and 
+  c. convert the new decade column into an ordered factor using the base-R <code>ordered()</code> function with the character vector of decades as input.</p>
+<p>(@) Down in the R Console, develop an R/tidyverse pipeline to achieve these changes and assign the result to an R object with the name <code>babies_born_by_decade_and_sex_tidy</code>. </p>
+<p>(@) Once you believe you solved the problem, play the following code chunk by pressing its &quot;play&quot; button. If it returns FALSE, keep working on your definition of <code>babies_born_by_decade_and_sex_tidy</code> in the R Console, and use your command-line history to validate your solution until it returns TRUE.</p>
+<pre><code class="lang-{r}"><span class="hljs-meta">#| eval: false</span>
+<span class="hljs-meta">#| label: test-babies_born_by_decade_and_sex_tidy </span>
+digest::digest(babies_born_by_decade_and_sex_tidy) == <span class="hljs-string">"466d532ccc360bc7921aae57217f5ea4"</span>
+</code></pre>
+<p>(@) Once you have validated your solution, copy your code that defines <code>babies_born_by_decade_and_sex_tidy</code> correctly here in code chunk labeled &quot;define-babies_born_by_decade_and_sex_tidy&quot; (it&#39;s OK if it contains more than one assignment or expression).</p>
+<pre><code class="lang-{r}"><span class="hljs-comment">#| label: define-babies_born_by_decade_and_sex_tidy </span>
+babies_born_by_decade_and_sex_tidy &lt;- babies_born_by_decade_and_sex |&gt;
+  as_tibble(<span class="hljs-attr">rownames</span> = <span class="hljs-string">"decade"</span>) |&gt;
+  pivot_longer(<span class="hljs-attr">cols</span> = c(boys, girls), <span class="hljs-attr">names_to</span> = <span class="hljs-string">"sex"</span>, <span class="hljs-attr">values_to</span> = <span class="hljs-string">"freq"</span>) |&gt;
+  mutate(<span class="hljs-attr">decade</span> = ordered(decade))
+</code></pre>
+<p>(@) Now use the R console to develop a graph-expression that makes a bar-chart of the birth rates by decade and sex from <code>babies_born_by_decade_and_sex_tidy</code> that fulfills these requirements:</p>
+<p>  a. Plots frequency on the y-axis in response to sex 
+  b. Fills bars with colors according to sex
+  c. Uses color-blind-friendly colors
+  d. Uses <code>facet_grid()</code> with <code>switch = &quot;x&quot;</code> to trend decades along the x-axis, and
+  e. Provides meaningful, correct and formatted labels for the x- and y-axes, a title and a caption that attributes the data source.</p>
+<p>(@) Copy your working graph expression here in the following code chunk to make the figure appear in the notebook when you render it.</p>
+<pre><code class="lang-{r}"><span class="hljs-comment">#| label: plot-babies_born_by_decade_and_sex_tidy</span>
+babies_born_by_decade_and_sex_tidy |&gt;
+  ggplot(aes(<span class="hljs-attr">x</span> = sex, <span class="hljs-attr">y</span> = freq, <span class="hljs-attr">fill</span> = sex)) +
+  geom_bar(<span class="hljs-attr">stat</span> = <span class="hljs-string">"identity"</span>) +
+  scale_fill_okabe_ito() +
+  facet_grid(~ decade, <span class="hljs-attr">switch</span> = <span class="hljs-string">"x"</span>) +
+  labs(<span class="hljs-attr">x</span> = <span class="hljs-string">"Decade"</span>,
+       <span class="hljs-attr">y</span> = <span class="hljs-string">"Number of Babies Born"</span>,
+       <span class="hljs-attr">title</span> = <span class="hljs-string">"U.S. Babies Born by Decade and Sex"</span>,
+       <span class="hljs-attr">caption</span> = <span class="hljs-string">"Data from U.S. Social Security Administration"</span>) +
+  theme(strip.<span class="hljs-attr">placement</span> = <span class="hljs-string">"outside"</span>)
+</code></pre>
+<h4 id="lollipot-chart-of-top-25-baby-names-by-mean-rank-over-14-decades-colored-by-sex">Lollipot Chart of Top 25 Baby-Names by Mean Rank Over 14 Decades Colored by Sex</h4>
+<p>Let&#39;s develop a lollipop chart that shows the top 25-ranked names defined by mean rank over decades, polled over sexes, and colored by sex. </p>
+<p>(@) Down in the R Console, evaluate <code>mean_rank_by_name_and_sex</code> to see its structure.</p>
+<p>The data is already tidy and pools both boy and girl names. To find the top 25 names though, we need to sort the rows by the value of the mean rank. </p>
+<p>(@) Down in the R Console, write an R or tidyverse expression to sort the rows of the  <code>mean_rank_by_name_and_sex</code> data-frame by their values in mean-rank, ascendingly from small to large values. Use the base-R selection with the order() function to achieve this. and assign the return value as a data-frame to the name <code>names_by_mean_rank</code>. In addition, after you sort the rows, add a column of the ranks with the name &quot;rank&quot; by executing the assignment <code>names_by_mean_rank$rank &lt;- 1:1236</code>. </p>
+<p>(@) Once you believe you solved the problem, play the following code chunk by pressing its &quot;play&quot; button. If it returns FALSE, keep working on your definition of <code>names_by_mean_rank</code> in the R Console, and use your command-line history to validate your solution until it returns TRUE.</p>
+<pre><code class="lang-{r}"><span class="hljs-meta">#| eval: false</span>
+<span class="hljs-meta">#| label: test-names_by_mean_rank</span>
+digest::digest(names_by_mean_rank) == <span class="hljs-string">"567f5086802a0844953a20ee1ff5f2de"</span>
+</code></pre>
+<p>(@) Once you have validated your solution, copy your code that defines <code>names_by_mean_rank</code> correctly here in code chunk labeled &quot;define-names_by_mean_rank&quot;.</p>
+<pre><code class="lang-{r}"><span class="hljs-comment">#| label: define-names_by_mean_rank</span>
+names_by_mean_rank &lt;- mean_rank_by_name_and_sex[order(mean_rank_by_name_and_sex<span class="hljs-variable">$mean_rank</span>), ]
+names_by_mean_rank<span class="hljs-variable">$rank</span> &lt;- <span class="hljs-number">1</span><span class="hljs-symbol">:nrow</span>(names_by_mean_rank)
+</code></pre>
+<p>(@) Now use the R console to develop a graph-expression successively that makes a lollipop chart of the top-25 names according to the following instructions:</p>
+<p>  a. Start a tidyverse pipeline by calling <code>as_tibble()</code> on <code>names_by_mean_rank</code>. 
+  b. Pipe the output through <code>slice(1:25)</code> to filter the top 25 rows.
+  c. Pipe the output through <code>ggplot(aes())</code> and associate the aesthetics x with mean_rank, y with rank, color with sex and label with name. 
+  d. Extend the graph expression with <code>geom_segment(aes(y = rank, yend = rank, x = 0, xend = mean_rank))</code> 
+  e. Extend the graph expression with <code>geom_label(aes(fill=sex), color=&quot;white&quot;, fontface=&quot;bold&quot;)</code> to annotate the names on the graph. 
+  f. Extend the graph expression with <code>scale_y_reverse()</code> to flip the graph y-axis and put the top-ranked names at the top. 
+  g. Extend the graph expression to set both the color and fill aesthetics with the Okabe-Ito palette. 
+  h. Extend the graph expression to add meaningful labels of &quot;Mean Rank over Decades&quot; for the x-axis, the empty string for the y-axis, &quot;Top 25 Baby-Names by Mean Rank Over 14 Decades Colored by Sex&quot; as a title and &quot;Data from U.S. Social Security Administration&quot; as the caption.
+  i. Extend the graph expression with </p>
+<pre><code>  + guides(<span class="hljs-name">color</span> = guide_legend(<span class="hljs-name">position</span> = <span class="hljs-string">"inside"</span>)) + 
+  theme(<span class="hljs-name">legend</span>.position.inside = c(<span class="hljs-number">0.92</span>, <span class="hljs-number">0.86</span>))
+</code></pre><p>(@) Copy your working graph expression here in the following code chunk to make the figure appear in the notebook when you render it.</p>
+<pre><code class="lang-{r}"><span class="hljs-comment">#| label: plot-names_by_mean_rank</span>
+as_tibble(names_by_mean_rank) |&gt;
+  slice(<span class="hljs-number">1</span>:<span class="hljs-number">25</span>) |&gt;
+  ggplot(aes(<span class="hljs-attr">x</span> = mean_rank, <span class="hljs-attr">y</span> = rank, <span class="hljs-attr">color</span> = sex, <span class="hljs-attr">label</span> = name)) +
+  geom_segment(aes(<span class="hljs-attr">y</span> = rank, <span class="hljs-attr">yend</span> = rank, <span class="hljs-attr">x</span> = <span class="hljs-number">0</span>, <span class="hljs-attr">xend</span> = mean_rank)) +
+  geom_label(aes(<span class="hljs-attr">fill</span> = sex), <span class="hljs-attr">color</span> = <span class="hljs-string">"white"</span>, <span class="hljs-attr">fontface</span> = <span class="hljs-string">"bold"</span>) +
+  scale_y_reverse() +
+  scale_color_okabe_ito() +
+  scale_fill_okabe_ito() +
+  labs(<span class="hljs-attr">x</span> = <span class="hljs-string">"Mean Rank over Decades"</span>,
+       <span class="hljs-attr">y</span> = <span class="hljs-string">""</span>,
+       <span class="hljs-attr">title</span> = <span class="hljs-string">"Top 25 Baby-Names by Mean Rank Over 14 Decades Colored by Sex"</span>,
+       <span class="hljs-attr">caption</span> = <span class="hljs-string">"Data from U.S. Social Security Administration"</span>) +
+  guides(<span class="hljs-attr">color</span> = guide_legend(<span class="hljs-attr">position</span> = <span class="hljs-string">"inside"</span>)) +
+  theme(legend.position.<span class="hljs-attr">inside</span> = c(<span class="hljs-number">0.92</span>, <span class="hljs-number">0.86</span>))
+</code></pre>
+<h3 id="make-the-baby-names-tidy">Make the Baby Names Tidy</h3>
+<p>(@) Down in the R Console, write R code that uses the <code>pivot_longer()</code> function to tidy the <code>baby_clean_tib</code> tibble and assign it to a new data-frame with the name <code>baby_clean_tidy</code> with these column names: decade,rank,sex,name,freq .</p>
+<p>(@) Test if you have tidied the data correctly by playing the following code chunk.</p>
+<pre><code class="lang-{r}"><span class="hljs-meta">#| eval: false</span>
+<span class="hljs-meta">#| label: test-baby-clean-tidy</span>
+digest::digest(baby_clean_tidy) == <span class="hljs-string">"430495299e0fd864ebed0d63c65212f6"</span>
+</code></pre>
+<p>(@) Once you have validated your solution, copy your code that defines <code>baby_clean_tidy</code> correctly here in code chunk labeled &quot;make-baby-clean-tidy&quot;.</p>
+<pre><code class="lang-{r}"><span class="hljs-comment">#| label: make-baby-clean-tidy</span>
+baby_clean_tidy &lt;- baby_clean_tib |&gt; 
+  pivot_longer(<span class="hljs-attr">cols</span> = boy_name:girl_freq, 
+               <span class="hljs-attr">names_sep</span> = <span class="hljs-string">"_"</span>,
+               <span class="hljs-attr">names_to</span> = c(<span class="hljs-string">"sex"</span>, <span class="hljs-string">".value"</span>))
+</code></pre>
+<h3 id="visualizing-incidence-of-babynames-over-decades-with-euler-diagrams">Visualizing Incidence of Babynames Over Decades with Euler Diagrams</h3>
+<p>Let&#39;s look at the patterns of name-sharing and name-uniqueness over decades using Euler diagrams. 
+(@) Working down in the R Console, first define a set of five decades to compare. You may choose five decades to compare by putting them in a character vector like <code>decades &lt;- c(&quot;1880&quot;, &quot;1910&quot;, &quot;1940&quot;, &quot;1970&quot;, &quot;2000&quot;)</code> or randomly sample five decades with <code>as.character(sample(unique(baby_clean_tidy$decade),5))</code>.</p>
+<p>(@) Then in the R Console, create a boolean incidence matrix of names over decades called <code>names.table</code>. First pipe the <code>baby_clean_tidy</code> tibble through the <code>select()</code> function, selecting the columns &quot;decade&quot; and &quot;name&quot;.</p>
+<p>(@) Now use command-line editing to pipe the output of your selection into the base-R <code>table()</code> function and inspect the output. </p>
+<p>(@) Now use command-line editing to pipe the output of the <code>table()</code> function into the base-R <code>t()</code> function and inspect the output. The base-R <code>t()</code> function stands for a matrix transpose operation, essentially turning a matrix side-ways.</p>
+<p>(@) Assign the output of this pipeline to the name <code>names.table</code>.</p>
+<p>(@) Now evaluate the code </p>
+<pre><code>plot(
+  <span class="hljs-name">euler</span>(
+    <span class="hljs-name">as</span>.data.frame.matrix(<span class="hljs-name">names</span>.table[, decades])),
+      quantities = TRUE,
+      main = <span class="hljs-string">"Sharing of Top 200 U.S. Babynames Across Five Decades"</span>)
+</code></pre><p>(@) In the following code-chunk labelled &quot;plot-incidence-over-decades&quot;, save your work by putting the definitions of <code>decades</code>, <code>names.table</code> and the plot-generating code so the figure appears when you render the notebook.</p>
+<pre><code class="lang-{r}">#| <span class="hljs-keyword">label</span>: <span class="hljs-keyword">plot</span>-incidence-over-decades
+decades &lt;- c(<span class="hljs-string">"1880"</span>, <span class="hljs-string">"1910"</span>, <span class="hljs-string">"1940"</span>, <span class="hljs-string">"1970"</span>, <span class="hljs-string">"2000"</span>)
+
+names.<span class="hljs-keyword">table</span> &lt;- baby_clean_tidy |&gt;
+  select(decade, name) |&gt;
+  <span class="hljs-keyword">table</span>() |&gt;
+  t()
+
+<span class="hljs-keyword">plot</span>(
+  euler(
+    <span class="hljs-keyword">as</span>.data.frame.<span class="hljs-built_in">matrix</span>(names.<span class="hljs-keyword">table</span>[, decades])),
+    quantities = TRUE,
+    main = <span class="hljs-string">"Sharing of Top 200 U.S. Babynames Across Five Decades"</span>)
+</code></pre>
+<blockquote>
+<p>Blockquote</p>
+</blockquote>
+<p>And <strong>bold</strong>, <em>italics</em>, and even <em>italics and later <strong>bold</strong></em>. Even <del>strikethrough</del>. <a href="https://markdowntohtml.com">A link</a> to somewhere.</p>
+<p>And code highlighting:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> foo = <span class="hljs-string">'bar'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">baz</span><span class="hljs-params">(s)</span> </span>{
+   <span class="hljs-keyword">return</span> foo + <span class="hljs-string">':'</span> + s;
+}
+</code></pre>
+<p>Or inline code like <code>var foo = &#39;bar&#39;;</code>.</p>
+<p>Or an image of bears</p>
+<p><img src="http://placebear.com/200/200" alt="bears"></p>
+<p>The end ...</p>
+</body></html>

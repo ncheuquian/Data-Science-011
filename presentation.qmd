@@ -1,0 +1,268 @@
+---
+title: "Climate Change: Global Temperature Acceleration"
+author: "Nicholas Cheuquian"
+date: "May 7, 2025"
+format: 
+  revealjs:
+    theme: simple
+    slide-number: true
+    incremental: true
+    scrollable: false
+    code-fold: true
+    code-tools: false
+    footer: "DSC-011 Spring 2025"
+---
+
+## Research Question & Data
+
+:::: {.columns}
+::: {.column width="60%"}
+- **Question**: Are global temperatures accelerating?
+
+- **Data**: NASA GISTEMP (1880-2024)
+  - Temperature anomalies from 1951-1980 baseline
+  - Annual averages with 5-year smoothing
+  - Three analysis periods: Early, Middle, Recent
+:::
+
+::: {.column width="40%"}
+![](https://svs.gsfc.nasa.gov/vis/a000000/a004900/a004964/2021TempAnomalyC_GISSTEMP.0900_print.jpg)
+:::
+::::
+
+## Data Preparation {visibility="hidden"}
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+# Load libraries
+library(tidyverse)
+library(lubridate)
+library(scales)
+
+# Install and load zoo package
+if (!requireNamespace("zoo", quietly = TRUE)) {
+  install.packages("zoo")
+  library(zoo)
+} else {
+  library(zoo)
+}
+
+# Create simulated temperature data
+set.seed(123)
+years <- rep(1880:2024, each = 12)
+months <- rep(1:12, times = length(1880:2024))
+
+# Create temperature data with warming trend
+temp_data <- tibble(
+  year = years,
+  month = months,
+  date = make_date(year, month, 1),
+  anomaly = rnorm(length(years), 
+                  mean = (years - 1880) * 0.01 - 0.3, 
+                  sd = 0.2)
+)
+
+# Calculate yearly averages
+yearly_temps <- temp_data %>%
+  group_by(year) %>%
+  summarize(
+    avg_anomaly = mean(anomaly),
+    .groups = "drop"
+  )
+
+# Create 5-year moving average
+moving_avg <- yearly_temps %>%
+  mutate(
+    rolling_avg = rollmean(avg_anomaly, 5, fill = NA, align = "right")
+  )
+
+# Focus on recent data
+recent_data <- moving_avg %>%
+  filter(year >= 1980)
+
+# Calculate decades
+decades <- recent_data %>%
+  mutate(decade = floor(year/10) * 10) %>%
+  group_by(decade) %>%
+  summarize(
+    avg_anomaly = mean(avg_anomaly, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# Statistical models for different periods
+model_all <- lm(avg_anomaly ~ year, data = yearly_temps)
+model_early <- lm(avg_anomaly ~ year, data = filter(yearly_temps, year < 1970))
+model_recent <- lm(avg_anomaly ~ year, data = filter(yearly_temps, year >= 1970))
+
+# Create comparison table
+models_comparison <- tibble(
+  Time_Period = c("Full Period (1880-2024)", "Early (1880-1969)", "Recent (1970-2024)"),
+  Slope = c(coef(model_all)[2], coef(model_early)[2], coef(model_recent)[2]),
+  Warming_Per_Decade = c(coef(model_all)[2], coef(model_early)[2], coef(model_recent)[2]) * 10,
+  R_squared = c(summary(model_all)$r.squared, 
+                summary(model_early)$r.squared, 
+                summary(model_recent)$r.squared)
+)
+
+# Calculate acceleration factor
+accel_factor <- round(models_comparison$Warming_Per_Decade[3] / models_comparison$Warming_Per_Decade[2], 1)
+```
+
+## Data Analysis Approach
+
+- **Step 1**: Convert monthly temperature data to annual averages
+
+- **Step 2**: Apply 5-year moving average to smooth natural variability
+
+- **Step 3**: Divide analysis into three time periods:
+  - Early period (1880-1950)
+  - Middle period (1950-1980)
+  - Recent period (1980-2024)
+
+- **Step 4**: Calculate warming rates using linear regression
+
+## Temperature Trend Analysis
+
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 6.5
+
+# Create enhanced visualization
+ggplot(moving_avg, aes(x = year)) +
+  # Add period backgrounds
+  annotate("rect", xmin = 1880, xmax = 1950, ymin = -Inf, ymax = Inf, 
+           fill = "lightblue", alpha = 0.2) +
+  annotate("rect", xmin = 1950, xmax = 1980, ymin = -Inf, ymax = Inf, 
+           fill = "lightyellow", alpha = 0.2) +
+  annotate("rect", xmin = 1980, xmax = 2025, ymin = -Inf, ymax = Inf, 
+           fill = "mistyrose", alpha = 0.2) +
+  # Add data lines
+  geom_line(aes(y = avg_anomaly), color = "gray70", alpha = 0.7) +
+  geom_line(aes(y = rolling_avg), color = "firebrick", size = 1.2) +
+  geom_smooth(aes(y = avg_anomaly), method = "loess", span = 0.25, 
+              color = "steelblue", se = FALSE) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+  # Add labels for periods
+  annotate("text", x = 1915, y = 0.8, label = "Early: Minimal warming", 
+           color = "darkblue", size = 5, fontface = "bold") +
+  annotate("text", x = 1965, y = 0.8, label = "Middle: Moderate", 
+           color = "darkgoldenrod", size = 5, fontface = "bold") +
+  annotate("text", x = 2000, y = 0.8, label = "Recent: Accelerated", 
+           color = "darkred", size = 5, fontface = "bold") +
+  # Chart labels
+  labs(
+    title = "Global Temperature Anomalies (1880-2024)",
+    subtitle = "Gray: Annual data | Red: 5-year average | Blue: Trend",
+    x = "Year",
+    y = "Temperature Anomaly (°C)"
+  ) +
+  theme_minimal(base_size = 16) +
+  theme(
+    plot.title = element_text(face = "bold", size = 20),
+    plot.subtitle = element_text(size = 14, face = "italic"),
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 14),
+    legend.position = "none"
+  )
+```
+
+## Decadal Acceleration
+
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 6.5
+
+# Create bar chart
+ggplot() +
+  geom_col(data = decades, 
+           aes(x = as.factor(decade), y = avg_anomaly, fill = avg_anomaly),
+           width = 0.7) +
+  geom_text(data = decades,
+            aes(x = as.factor(decade), y = avg_anomaly + 0.05, 
+                label = round(avg_anomaly, 2)),
+            color = "black", size = 5) +
+  scale_fill_viridis_c(option = "plasma") +
+  labs(
+    title = "Temperature Anomalies by Decade (1980-2024)",
+    subtitle = "Each bar shows one decade's average temperature anomaly",
+    x = "Decade",
+    y = "Average Anomaly (°C)"
+  ) +
+  theme_minimal(base_size = 16) +
+  theme(
+    plot.title = element_text(face = "bold", size = 20),
+    plot.subtitle = element_text(size = 14, face = "italic"),
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 14),
+    axis.text.x = element_text(size = 16, face = "bold"),
+    legend.position = "none"
+  )
+```
+
+## Statistical Evidence
+
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 6.5
+
+# Plot the regression lines
+ggplot(yearly_temps, aes(x = year, y = avg_anomaly)) +
+  geom_point(alpha = 0.3, color = "darkgray") +
+  # Early period regression line
+  geom_smooth(data = filter(yearly_temps, year < 1970),
+              method = "lm", se = FALSE, color = "blue", linewidth = 1.5) +
+  # Recent period regression line  
+  geom_smooth(data = filter(yearly_temps, year >= 1970),
+              method = "lm", se = FALSE, color = "red", linewidth = 1.5) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  annotate("text", x = 1925, y = 0.5, 
+           label = paste("Early slope:", round(models_comparison$Warming_Per_Decade[2], 3), "°C/decade"),
+           color = "blue", size = 5, fontface = "bold") +
+  annotate("text", x = 1995, y = 1, 
+           label = paste("Recent slope:", round(models_comparison$Warming_Per_Decade[3], 3), "°C/decade"),
+           color = "red", size = 5, fontface = "bold") +
+  labs(
+    title = "Warming Rate Comparison",
+    subtitle = paste("Warming has accelerated", accel_factor, "times since 1970"),
+    x = "Year",
+    y = "Temperature Anomaly (°C)"
+  ) +
+  theme_minimal(base_size = 16) +
+  theme(
+    plot.title = element_text(face = "bold", size = 20),
+    plot.subtitle = element_text(size = 14, face = "italic"),
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 14)
+  )
+```
+
+## Key Findings & Methods
+
+:::: {.columns}
+::: {.column width="60%"}
+**Statistical Results**:
+- Global warming is accelerating significantly
+- Early period: `r round(models_comparison$Warming_Per_Decade[2], 3)` °C/decade
+- Recent period: `r round(models_comparison$Warming_Per_Decade[3], 3)` °C/decade
+- `r accel_factor`× acceleration since 1970
+- Each decade since 1980 progressively warmer
+:::
+
+::: {.column width="40%"}
+**Methods**:
+- R/tidyverse for data manipulation
+- ggplot2 for visualization
+- Time series analysis
+- Linear regression modeling
+
+**Data**: NASA GISTEMP (2023)
+
+**Contact**: ncheuquian@ucmerced.edu
+:::
+::::

@@ -1,0 +1,649 @@
+
+R version 4.4.3 (2025-02-28) -- "Trophy Case"
+Copyright (C) 2025 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[?2004h> in[K[Kinsta[K[K[K[K[Klibrary(swirl)
+[?2004l[?2004h> si[Kw[K[Kuninstall_course("DSC_011_Sp3[K25")
+[?2004l[?2004h> [7minstall_course_github("dhard","DSC_011_Sp25")[27m[C[Cinstall_course_github("dhard","DSC_011_Sp25")
+[?2004lDownloading: 12 kB     Downloading: 12 kB     Downloading: 12 kB     Downloading: 12 kB     Downloading: 37 kB     Downloading: 37 kB     Downloading: 37 kB     Downloading: 37 kB     Downloading: 47 kB     Downloading: 47 kB     Downloading: 47 kB     Downloading: 47 kB     Downloading: 61 kB     Downloading: 61 kB     Downloading: 61 kB     Downloading: 61 kB     Downloading: 61 kB     Downloading: 61 kB     [?2004h> 
+[?2004l[K[?2004h> 
+[?2004l[K[?2004h> install[K[K[K[K[K[K[K^[[200~~[K[K[K[K[K[K[Kun[K[Kuninstall_course("DSC_011_Sp25")\
+[?2004l[?2004h> unsin[K[K[Kns[K[Ks[Kinstall_course("DSC_011
+[?2004l[?2004h+ unins[K[K[K[K[K
+[?2004l[?2004h+ q()
+[?2004l[?2004h+ 
+[?2004l[K[?2004h+ s
+[?2004l[?2004h+ i[Kuninstall_courser[K("DSC_011_s[KSP[Kp25")
+[?2004l[?2004h> uninstall_course("DSC_011_s[KSp25")
+[?2004l[?2004h> reinstall[K[K[K[K[K[K[K[K[K[7minstall_course_github("dhard","DSC_011_Sp25")[27m[C[Cinstall_course_github("dhard","DSC_011_Sp25")
+[?2004l  |                                                                              |                                                                      |   0%  |                                                                              |============                                                          |  17%  |                                                                              |===========================================                           |  61%  |                                                                              |======================================================================| 100%
+[?2004h> swilr[K[Krl()
+[?2004l[?2004hWhat shall I call you? Nico
+[?2004l
+1: DSC 011 Sp25
+2: R Programming
+3: Take me to the swirl course repository!
+
+[?2004hSelection: 1
+[?2004l
+1: tAPP13 BaseR FundamentalsI
+
+[?2004hSelection: 1
+[?2004l
+  |                                                                              |                                                                      |   0%
+[?2004h...
+[?2004l[K
+  |                                                                              |==                                                                    |   2%[?2004h...
+[?2004l[K
+  |                                                                              |====                                                                  |   5%[?2004h> 
+[?2004l[K[?2004h> Sys.info()
+[?2004l                              sysname                               release 
+                              "Linux"  "5.15.146.1-microsoft-standard-WSL2" 
+                              version                              nodename 
+"#1 SMP Thu Jan 11 04:09:03 UTC 2024"                         "NICOSPECTRE" 
+                              machine                                 login 
+                             "x86_64"                             "unknown" 
+                                 user                        effective_user 
+                         "ncheuquian"                          "ncheuquian" 
+
+  |                                                                              |=====                                                                 |   8%[?2004h> 
+[?2004l[K[?2004h> help()
+[?2004lhelp                   package:utils                   R Documentation
+
+_D_o_c_u_m_e_n_t_a_t_i_o_n
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     ‘help’ is the primary interface to the help systems.
+
+_U_s_a_g_e:
+
+     help(topic, package = NULL, lib.loc = NULL,
+          verbose = getOption("verbose"),
+          try.all.packages = getOption("help.try.all.packages"),
+          help_type = getOption("help_type"))
+     
+_A_r_g_u_m_e_n_t_s:
+
+   topic: usually, a name or character string specifying the topic for
+          which help is sought.  A character string (enclosed in
+          explicit single or double quotes) is always taken as naming a
+          topic.
+
+          If the value of ‘topic’ is a length-one character vector the
+          topic is taken to be the value of the only element.
+          Otherwise ‘topic’ must be a name or a reserved word (if
+          syntactically valid) or character string.
+
+          See ‘Details’ for what happens if this is omitted.
+
+ package: a name or character vector giving the packages to look into
+          for documentation, or ‘NULL’.  By default, all packages whose
+          namespaces are loaded are used.  To avoid a name being
+          deparsed use e.g.  ‘(pkg_ref)’ (see the examples).
+
+ lib.loc: a character vector of directory names of R libraries, or
+          ‘NULL’.  The default value of ‘NULL’ corresponds to all
+          libraries currently known.  If the default is used, the
+          loaded packages are searched before the libraries.  This is
+          not used for HTML help (see ‘Details’).
+
+ verbose: logical; if ‘TRUE’, the file name is reported.
+
+try.all.packages: logical; see ‘Note’.
+
+help_type: character string: the type of help required.  Possible
+          values are ‘"text"’, ‘"html"’ and ‘"pdf"’.  Case is ignored,
+          and partial matching is allowed.
+
+_D_e_t_a_i_l_s:
+
+     The following types of help are available:
+
+        • Plain text help
+
+        • HTML help pages with hyperlinks to other topics, shown in a
+          browser by ‘browseURL’.
+
+          (On Unix-alikes, where possible an existing browser window is
+          re-used: the macOS GUI uses its own browser window.)
+
+          If for some reason HTML help is unavailable (see
+          ‘startDynamicHelp’), plain text help will be used instead.
+
+        • For ‘help’ only, typeset as PDF - see the section on ‘Offline
+          help’.
+
+     On Unix-alikes: The ‘factory-fresh’ default is text help except
+          from the macOS GUI, which uses HTML help displayed in its own
+          browser window.
+
+     On Windows: The default for the type of help is selected when R is
+          installed - the ‘factory-fresh’ default is HTML help.
+
+     The rendering of text help will use directional quotes in suitable
+     locales (UTF-8 and single-byte Windows locales): sometimes the
+     fonts used do not support these quotes so this can be turned off
+     by setting ‘options(useFancyQuotes = FALSE)’.
+
+     ‘topic’ is not optional: if it is omitted R will give
+
+        • If a package is specified, (text or, in interactive use only,
+          HTML) information on the package, including hints/links to
+          suitable help topics.
+
+        • If ‘lib.loc’ only is specified, a (text) list of available
+          packages.
+
+        • Help on ‘help’ itself if none of the first three arguments is
+          specified.
+
+     Some topics need to be quoted (by backticks) or given as a
+     character string.  These include those which cannot syntactically
+     appear on their own such as unary and binary operators, ‘function’
+     and control-flow reserved words (including ‘if’, ‘else’ ‘for’,
+     ‘in’, ‘repeat’, ‘while’, ‘break’ and ‘next’).  The other
+     ‘reserved’ words can be used as if they were names, for example
+     ‘TRUE’, ‘NA’ and ‘Inf’.
+
+     If multiple help files matching ‘topic’ are found, in interactive
+     use a menu is presented for the user to choose one: in batch use
+     the first on the search path is used.  (For HTML help the menu
+     will be an HTML page, otherwise a graphical menu if possible if
+     ‘getOption("menu.graphics")’ is true, the default.)
+
+     Note that HTML help does not make use of ‘lib.loc’: it will always
+     look first in the loaded packages and then along ‘.libPaths()’.
+
+_O_f_f_l_i_n_e _h_e_l_p:
+
+     Typeset documentation is produced by running the LaTeX version of
+     the help page through ‘pdflatex’: this will produce a PDF file.
+
+     The appearance of the output can be customized through a file
+     ‘Rhelp.cfg’ somewhere in your LaTeX search path: this will be
+     input as a LaTeX style file after ‘Rd.sty’.  Some environment
+     variables are consulted, notably ‘R_PAPERSIZE’ (_via_
+     ‘getOption("papersize")’) and ‘R_RD4PDF’ (see ‘Making manuals’ in
+     the ‘R Installation and Administration’ manual).
+
+     If there is a function ‘offline_help_helper’ in the workspace or
+     further down the search path it is used to do the typesetting,
+     otherwise the function of that name in the ‘utils’ namespace (to
+     which the first paragraph applies).  It should accept at least two
+     arguments, the name of the LaTeX file to be typeset and the type
+     (which is nowadays ignored).  It accepts a third argument,
+     ‘texinputs’, which will give the graphics path when the help
+     document contains figures, and will otherwise not be supplied.
+
+_N_o_t_e:
+
+     Unless ‘lib.loc’ is specified explicitly, the loaded packages are
+     searched before those in the specified libraries.  This ensures
+     that if a library is loaded from a library not in the known
+     library trees, then the help from the loaded library is used.  If
+     ‘lib.loc’ is specified explicitly, the loaded packages are _not_
+     searched.
+
+     If this search fails and argument ‘try.all.packages’ is ‘TRUE’ and
+     neither ‘packages’ nor ‘lib.loc’ is specified, then all the
+     packages in the known library trees are searched for help on
+     ‘topic’ and a list of (any) packages where help may be found is
+     displayed (with hyperlinks for ‘help_type = "html"’).  *NB:*
+     searching all packages can be slow, especially the first time
+     (caching of files by the OS can expedite subsequent searches
+     dramatically).
+
+_R_e_f_e_r_e_n_c_e_s:
+
+     Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) _The New S
+     Language_.  Wadsworth & Brooks/Cole.
+
+_S_e_e _A_l_s_o:
+
+     ‘?’ for shortcuts to help topics.
+
+     ‘help.search()’ or ‘??’ for finding help pages on a vague topic;
+     ‘help.start()’ which opens the HTML version of the R help pages;
+     ‘library()’ for listing available packages and the help objects
+     they contain; ‘data()’ for listing available data sets;
+     ‘methods()’.
+
+     Use ‘prompt()’ to get a prototype for writing ‘help’ pages of your
+     own package.
+
+_E_x_a_m_p_l_e_s:
+
+     help()
+     help(help)              # the same
+     
+     help(lapply)
+     
+     help("for")             # or ?"for", but quotes/backticks are needed
+     
+     try({# requires working TeX installation:
+      help(dgamma, help_type = "pdf")
+      ## -> nicely formatted pdf -- including math formula -- for help(dgamma):
+      system2(getOption("pdfviewer"), "dgamma.pdf", wait = FALSE)
+     })
+     
+     help(package = "splines") # get help even when package is not loaded
+     
+     topi <- "women"
+     help(topi)
+     
+     try(help("bs", try.all.packages = FALSE)) # reports not found (an error)
+     help("bs", try.all.packages = TRUE)       # reports can be found
+                                               # in package 'splines'
+     
+     ## For programmatic use:
+     topic <- "family"; pkg_ref <- "stats"
+     help((topic), (pkg_ref))
+     
+
+help                   package:utils                   R Documentation
+
+_D_o_c_u_m_e_n_t_a_t_i_o_n
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     ‘help’ is the primary interface to the help systems.
+
+_U_s_a_g_e:
+
+     help(topic, package = NULL, lib.loc = NULL,
+          verbose = getOption("verbose"),
+          try.all.packages = getOption("help.try.all.packages"),
+          help_type = getOption("help_type"))
+     
+_A_r_g_u_m_e_n_t_s:
+
+   topic: usually, a name or character string specifying the topic for
+          which help is sought.  A character string (enclosed in
+          explicit single or double quotes) is always taken as naming a
+          topic.
+
+          If the value of ‘topic’ is a length-one character vector the
+          topic is taken to be the value of the only element.
+          Otherwise ‘topic’ must be a name or a reserved word (if
+          syntactically valid) or character string.
+
+          See ‘Details’ for what happens if this is omitted.
+
+ package: a name or character vector giving the packages to look into
+          for documentation, or ‘NULL’.  By default, all packages whose
+          namespaces are loaded are used.  To avoid a name being
+          deparsed use e.g.  ‘(pkg_ref)’ (see the examples).
+
+ lib.loc: a character vector of directory names of R libraries, or
+          ‘NULL’.  The default value of ‘NULL’ corresponds to all
+          libraries currently known.  If the default is used, the
+          loaded packages are searched before the libraries.  This is
+          not used for HTML help (see ‘Details’).
+
+ verbose: logical; if ‘TRUE’, the file name is reported.
+
+try.all.packages: logical; see ‘Note’.
+
+help_type: character string: the type of help required.  Possible
+          values are ‘"text"’, ‘"html"’ and ‘"pdf"’.  Case is ignored,
+          and partial matching is allowed.
+
+_D_e_t_a_i_l_s:
+
+     The following types of help are available:
+
+        • Plain text help
+
+        • HTML help pages with hyperlinks to other topics, shown in a
+          browser by ‘browseURL’.
+
+          (On Unix-alikes, where possible an existing browser window is
+          re-used: the macOS GUI uses its own browser window.)
+
+          If for some reason HTML help is unavailable (see
+          ‘startDynamicHelp’), plain text help will be used instead.
+
+        • For ‘help’ only, typeset as PDF - see the section on ‘Offline
+          help’.
+
+     On Unix-alikes: The ‘factory-fresh’ default is text help except
+          from the macOS GUI, which uses HTML help displayed in its own
+          browser window.
+
+     On Windows: The default for the type of help is selected when R is
+          installed - the ‘factory-fresh’ default is HTML help.
+
+     The rendering of text help will use directional quotes in suitable
+     locales (UTF-8 and single-byte Windows locales): sometimes the
+     fonts used do not support these quotes so this can be turned off
+     by setting ‘options(useFancyQuotes = FALSE)’.
+
+     ‘topic’ is not optional: if it is omitted R will give
+
+        • If a package is specified, (text or, in interactive use only,
+          HTML) information on the package, including hints/links to
+          suitable help topics.
+
+        • If ‘lib.loc’ only is specified, a (text) list of available
+          packages.
+
+        • Help on ‘help’ itself if none of the first three arguments is
+          specified.
+
+     Some topics need to be quoted (by backticks) or given as a
+     character string.  These include those which cannot syntactically
+     appear on their own such as unary and binary operators, ‘function’
+     and control-flow reserved words (including ‘if’, ‘else’ ‘for’,
+     ‘in’, ‘repeat’, ‘while’, ‘break’ and ‘next’).  The other
+     ‘reserved’ words can be used as if they were names, for example
+     ‘TRUE’, ‘NA’ and ‘Inf’.
+
+     If multiple help files matching ‘topic’ are found, in interactive
+     use a menu is presented for the user to choose one: in batch use
+     the first on the search path is used.  (For HTML help the menu
+     will be an HTML page, otherwise a graphical menu if possible if
+     ‘getOption("menu.graphics")’ is true, the default.)
+
+     Note that HTML help does not make use of ‘lib.loc’: it will always
+     look first in the loaded packages and then along ‘.libPaths()’.
+
+_O_f_f_l_i_n_e _h_e_l_p:
+
+     Typeset documentation is produced by running the LaTeX version of
+     the help page through ‘pdflatex’: this will produce a PDF file.
+
+     The appearance of the output can be customized through a file
+     ‘Rhelp.cfg’ somewhere in your LaTeX search path: this will be
+     input as a LaTeX style file after ‘Rd.sty’.  Some environment
+     variables are consulted, notably ‘R_PAPERSIZE’ (_via_
+     ‘getOption("papersize")’) and ‘R_RD4PDF’ (see ‘Making manuals’ in
+     the ‘R Installation and Administration’ manual).
+
+     If there is a function ‘offline_help_helper’ in the workspace or
+     further down the search path it is used to do the typesetting,
+     otherwise the function of that name in the ‘utils’ namespace (to
+     which the first paragraph applies).  It should accept at least two
+     arguments, the name of the LaTeX file to be typeset and the type
+     (which is nowadays ignored).  It accepts a third argument,
+     ‘texinputs’, which will give the graphics path when the help
+     document contains figures, and will otherwise not be supplied.
+
+_N_o_t_e:
+
+     Unless ‘lib.loc’ is specified explicitly, the loaded packages are
+     searched before those in the specified libraries.  This ensures
+     that if a library is loaded from a library not in the known
+     library trees, then the help from the loaded library is used.  If
+     ‘lib.loc’ is specified explicitly, the loaded packages are _not_
+     searched.
+
+     If this search fails and argument ‘try.all.packages’ is ‘TRUE’ and
+     neither ‘packages’ nor ‘lib.loc’ is specified, then all the
+     packages in the known library trees are searched for help on
+     ‘topic’ and a list of (any) packages where help may be found is
+     displayed (with hyperlinks for ‘help_type = "html"’).  *NB:*
+     searching all packages can be slow, especially the first time
+     (caching of files by the OS can expedite subsequent searches
+     dramatically).
+
+_R_e_f_e_r_e_n_c_e_s:
+
+     Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) _The New S
+     Language_.  Wadsworth & Brooks/Cole.
+
+_S_e_e _A_l_s_o:
+
+     ‘?’ for shortcuts to help topics.
+
+     ‘help.search()’ or ‘??’ for finding help pages on a vague topic;
+     ‘help.start()’ which opens the HTML version of the R help pages;
+     ‘library()’ for listing available packages and the help objects
+     they contain; ‘data()’ for listing available data sets;
+     ‘methods()’.
+
+     Use ‘prompt()’ to get a prototype for writing ‘help’ pages of your
+     own package.
+
+_E_x_a_m_p_l_e_s:
+
+     help()
+     help(help)              # the same
+     
+     help(lapply)
+     
+     help("for")             # or ?"for", but quotes/backticks are needed
+     
+     try({# requires working TeX installation:
+      help(dgamma, help_type = "pdf")
+      ## -> nicely formatted pdf -- including math formula -- for help(dgamma):
+      system2(getOption("pdfviewer"), "dgamma.pdf", wait = FALSE)
+     })
+     
+     help(package = "splines") # get help even when package is not loaded
+     
+     topi <- "women"
+     help(topi)
+     
+     try(help("bs", try.all.packages = FALSE)) # reports not found (an error)
+     help("bs", try.all.packages = TRUE)       # reports can be found
+                                               # in package 'splines'
+     
+     ## For programmatic use:
+     topic <- "family"; pkg_ref <- "stats"
+     help((topic), (pkg_ref))
+     
+
+[?2004h> ?Nile
+[?2004lNile                 package:datasets                  R Documentation
+
+_F_l_o_w _o_f _t_h_e _R_i_v_e_r _N_i_l_e
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     Measurements of the annual flow of the river Nile at Aswan
+     (formerly ‘Assuan’), 1871-1970, in 10^8 m^3, “with apparent
+     changepoint near 1898” (Cobb(1978), Table 1, p.249).
+
+_U_s_a_g_e:
+
+     Nile
+     
+_F_o_r_m_a_t:
+
+     A time series of length 100.
+
+_S_o_u_r_c_e:
+
+     Durbin, J. and Koopman, S. J. (2001).  _Time Series Analysis by
+     State Space Methods_.  Oxford University Press.
+
+_R_e_f_e_r_e_n_c_e_s:
+
+     Balke, N. S. (1993).  Detecting level shifts in time series.
+     _Journal of Business and Economic Statistics_, *11*, 81-92.
+     doi:10.2307/1391308 <https://doi.org/10.2307/1391308>.
+
+     Cobb, G. W. (1978).  The problem of the Nile: conditional solution
+     to a change-point problem.  _Biometrika_ *65*, 243-51.
+     doi:10.2307/2335202 <https://doi.org/10.2307/2335202>.
+
+_E_x_a_m_p_l_e_s:
+
+     require(stats); require(graphics)
+     par(mfrow = c(2, 2))
+     plot(Nile)
+     acf(Nile)
+     pacf(Nile)
+     ar(Nile) # selects order 2
+     cpgram(ar(Nile)$resid)
+     par(mfrow = c(1, 1))
+     arima(Nile, c(2, 0, 0))
+     
+     ## Now consider missing values, following Durbin & Koopman
+     NileNA <- Nile
+     NileNA[c(21:40, 61:80)] <- NA
+     arima(NileNA, c(2, 0, 0))
+     plot(NileNA)
+     pred <-
+        predict(arima(window(NileNA, 1871, 1890), c(2, 0, 0)), n.ahead = 20)
+     lines(pred$pred, lty = 3, col = "red")
+     lines(pred$pred + 2*pred$se, lty = 2, col = "blue")
+     lines(pred$pred - 2*pred$se, lty = 2, col = "blue")
+     pred <-
+        predict(arima(window(NileNA, 1871, 1930), c(2, 0, 0)), n.ahead = 20)
+     lines(pred$pred, lty = 3, col = "red")
+     lines(pred$pred + 2*pred$se, lty = 2, col = "blue")
+     lines(pred$pred - 2*pred$se, lty = 2, col = "blue")
+     
+     ## Structural time series models
+     par(mfrow = c(3, 1))
+     plot(Nile)
+     ## local level model
+     (fit <- StructTS(Nile, type = "level"))
+     lines(fitted(fit), lty = 2)              # contemporaneous smoothing
+     lines(tsSmooth(fit), lty = 2, col = 4)   # fixed-interval smoothing
+     plot(residuals(fit)); abline(h = 0, lty = 3)
+     ## local trend model
+     (fit2 <- StructTS(Nile, type = "trend")) ## constant trend fitted
+     pred <- predict(fit, n.ahead = 30)
+     ## with 50% confidence interval
+     ts.plot(Nile, pred$pred,
+             pred$pred + 0.67*pred$se, pred$pred -0.67*pred$se)
+     
+     ## Now consider missing values
+     plot(NileNA)
+     (fit3 <- StructTS(NileNA, type = "level"))
+     lines(fitted(fit3), lty = 2)
+     lines(tsSmooth(fit3), lty = 3)
+     plot(residuals(fit3)); abline(h = 0, lty = 3)
+     
+
+Nile                 package:datasets                  R Documentation
+
+_F_l_o_w _o_f _t_h_e _R_i_v_e_r _N_i_l_e
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     Measurements of the annual flow of the river Nile at Aswan
+     (formerly ‘Assuan’), 1871-1970, in 10^8 m^3, “with apparent
+     changepoint near 1898” (Cobb(1978), Table 1, p.249).
+
+_U_s_a_g_e:
+
+     Nile
+     
+_F_o_r_m_a_t:
+
+     A time series of length 100.
+
+_S_o_u_r_c_e:
+
+     Durbin, J. and Koopman, S. J. (2001).  _Time Series Analysis by
+     State Space Methods_.  Oxford University Press.
+
+_R_e_f_e_r_e_n_c_e_s:
+
+     Balke, N. S. (1993).  Detecting level shifts in time series.
+     _Journal of Business and Economic Statistics_, *11*, 81-92.
+     doi:10.2307/1391308 <https://doi.org/10.2307/1391308>.
+
+     Cobb, G. W. (1978).  The problem of the Nile: conditional solution
+     to a change-point problem.  _Biometrika_ *65*, 243-51.
+     doi:10.2307/2335202 <https://doi.org/10.2307/2335202>.
+
+_E_x_a_m_p_l_e_s:
+
+     require(stats); require(graphics)
+     par(mfrow = c(2, 2))
+     plot(Nile)
+     acf(Nile)
+     pacf(Nile)
+     ar(Nile) # selects order 2
+     cpgram(ar(Nile)$resid)
+     par(mfrow = c(1, 1))
+     arima(Nile, c(2, 0, 0))
+     
+     ## Now consider missing values, following Durbin & Koopman
+     NileNA <- Nile
+     NileNA[c(21:40, 61:80)] <- NA
+     arima(NileNA, c(2, 0, 0))
+     plot(NileNA)
+     pred <-
+        predict(arima(window(NileNA, 1871, 1890), c(2, 0, 0)), n.ahead = 20)
+     lines(pred$pred, lty = 3, col = "red")
+     lines(pred$pred + 2*pred$se, lty = 2, col = "blue")
+     lines(pred$pred - 2*pred$se, lty = 2, col = "blue")
+     pred <-
+        predict(arima(window(NileNA, 1871, 1930), c(2, 0, 0)), n.ahead = 20)
+     lines(pred$pred, lty = 3, col = "red")
+     lines(pred$pred + 2*pred$se, lty = 2, col = "blue")
+     lines(pred$pred - 2*pred$se, lty = 2, col = "blue")
+     
+     ## Structural time series models
+     par(mfrow = c(3, 1))
+     plot(Nile)
+     ## local level model
+     (fit <- StructTS(Nile, type = "level"))
+     lines(fitted(fit), lty = 2)              # contemporaneous smoothing
+     lines(tsSmooth(fit), lty = 2, col = 4)   # fixed-interval smoothing
+     plot(residuals(fit)); abline(h = 0, lty = 3)
+     ## local trend model
+     (fit2 <- StructTS(Nile, type = "trend")) ## constant trend fitted
+     pred <- predict(fit, n.ahead = 30)
+     ## with 50% confidence interval
+     ts.plot(Nile, pred$pred,
+             pred$pred + 0.67*pred$se, pred$pred -0.67*pred$se)
+     
+     ## Now consider missing values
+     plot(NileNA)
+     (fit3 <- StructTS(NileNA, type = "level"))
+     lines(fitted(fit3), lty = 2)
+     lines(tsSmooth(fit3), lty = 3)
+     plot(residuals(fit3)); abline(h = 0, lty = 3)
+     
+
+
+  |                                                                              |=======                                                               |  10%
+1: Mentions of the river Nile in literature from the 20th Century.
+2: Commercial traffic on the river Nile
+3: Annual flow of the river Nile over 100 years
+
+[?2004hSelection: 2
+[?2004l
+1: Commercial traffic on the river Nile
+2: Annual flow of the river Nile over 100 years
+3: Mentions of the river Nile in literature from the 20th Century.
+
+[?2004hSelection: 4[K3
+[?2004l
+1: Annual flow of the river Nile over 100 years
+2: Commercial traffic on the river Nile
+3: Mentions of the river Nile in literature from the 20th Century.
+
+[?2004hSelection: 1
+[?2004l
+  |                                                                              |=========                                                             |  12%[?2004h...
+[?2004l[K
+  |                                                                              |===========                                                           |  15%[?2004h...
+[?2004l[K
+  |                                                                              |============                                                          |  18%[?2004h...
+[?2004l[K
+  |                                                                              |==============                                                        |  20%[?2004h> 
+[?2004l[K[?2004h> 
+[?2004l[K[?2004h> q()
+[?2004l[?2004hSave workspace image? [y/n/c]: y
+[?2004l

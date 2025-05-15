@@ -1,0 +1,262 @@
+
+R version 4.5.0 (2025-04-11) -- "How About a Twenty-Six"
+Copyright (C) 2025 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+ℹ Using R 4.5.0 (lockfile was generated with R 4.4.3)
+- Project '~/DSC011/DSC-011-Sp25-Baby-Names' loaded. [renv 1.1.4]
+- The project is out-of-sync -- use `renv::status()` for details.
+> source("scripts/03a-import-data.R",echo=T)
+
+> baby_clean <- read.csv("data/clean/baby_clean.csv", 
++     header = T)
+
+> baby_clean_f <- read.csv("data/clean/baby_clean.csv", 
++     header = T, stringsAsFactors = T)
+
+> baby_letters <- read.table("data/clean/baby_letters.txt", 
++     header = T)
+> source("scripts/03b-compute-summaries.R",echo=T)
+
+> babies_born_by_decade_and_sex <- NULL
+
+> babies_born_by_name_and_sex <- NULL
+
+> sex_ratio_by_decade <- NULL
+
+> mean_rank_by_name_and_sex <- NULL
+
+> baby_letters_rel <- NULL
+> source("scripts/03c-validate-data.R",echo=T)
+
+> validation_key <- list(list(name = "baby_clean", hash = "832d1ae438578242fb5624a3207faedd"), 
++     list(name = "baby_letters", hash = "dd99fbc3d66c ..." ... [TRUNCATED] 
+
+> test <- function(x, i) {
++     cat(paste0("Test ", i, ":\n"))
++     cat(paste0("Is the variable \"", x$name, "\" defined? ", 
++         ifelse(exist .... [TRUNCATED] 
+
+> i <- 1
+
+> for (item in validation_key) {
++     test(item, i)
++     i <- i + 1
++ }
+Test 1:
+Is the variable "baby_clean" defined? YES.
+Testing the value of baby_clean: CORRECT 
+Test 2:
+Is the variable "baby_letters" defined? YES.
+Testing the value of baby_letters: CORRECT 
+Test 3:
+Is the variable "babies_born_by_decade_and_sex" defined? YES.
+Testing the value of babies_born_by_decade_and_sex: INCORRECT 
+Test 4:
+Is the variable "babies_born_by_name_and_sex" defined? YES.
+Testing the value of babies_born_by_name_and_sex: INCORRECT 
+Test 5:
+Is the variable "sex_ratio_by_decade" defined? YES.
+Testing the value of sex_ratio_by_decade: INCORRECT 
+Test 6:
+Is the variable "mean_rank_by_name_and_sex" defined? YES.
+Testing the value of mean_rank_by_name_and_sex: INCORRECT 
+Test 7:
+Is the variable "baby_letters_rel" defined? YES.
+Testing the value of baby_letters_rel: INCORRECT 
+> source("scripts/03d-make-plots.R",echo=T)
+> 
+ncheuquian
+Wed Apr 16 23:42:23 PDT 2025
+.
+├── DSC011_Lab11.txt
+├── LICENSE.txt
+├── README.md
+├── data
+│   ├── clean
+│   │   ├── baby_clean.csv
+│   │   └── baby_letters.txt
+│   ├── processed
+│   │   ├── both_letters_obs.txt
+│   │   ├── both_letters_pop.txt
+│   │   ├── boys_letters_obs.txt
+│   │   ├── boys_letters_pop.txt
+│   │   ├── boys_paste.txt
+│   │   ├── girls_letters_obs.txt
+│   │   ├── girls_letters_pop.txt
+│   │   ├── names1880s.txt
+│   │   ├── names1890s.txt
+│   │   ├── names1900s.txt
+│   │   ├── names1910s.txt
+│   │   ├── names1920s.txt
+│   │   ├── names1930s.txt
+│   │   ├── names1940s.txt
+│   │   ├── names1950s.txt
+│   │   ├── names1960s.txt
+│   │   ├── names1970s.txt
+│   │   ├── names1980s.txt
+│   │   ├── names1990s.txt
+│   │   ├── names2000s.txt
+│   │   ├── names2010s.txt
+│   │   └── other_paste.txt
+│   └── raw
+│       ├── names1880s.html
+│       ├── names1890s.html
+│       ├── names1900s.html
+│       ├── names1910s.html
+│       ├── names1920s.html
+│       ├── names1930s.html
+│       ├── names1940s.html
+│       ├── names1950s.html
+│       ├── names1960s.html
+│       ├── names1970s.html
+│       ├── names1980s.html
+│       ├── names1990s.html
+│       ├── names2000s.html
+│       └── names2010s.html
+├── plots
+├── pyproject.toml
+├── renv
+│   ├── activate.R
+│   ├── library
+│   │   └── linux-ubuntu-noble
+│   │       └── R-4.5
+│   │           └── x86_64-pc-linux-gnu
+│   │               ├── R6 -> /home/ncheuquian/.cache/R/renv/cache/v5/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu/R6/2.6.1/d4335fe7207f1c01ab8c41762f5840d4/R6
+│   │               ├── cli -> /home/ncheuquian/.cache/R/renv/cache/v5/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu/cli/3.6.4/491c34d3d9dd0d2fe13d9f278bb90795/cli
+│   │               ├── digest -> /home/ncheuquian/.cache/R/renv/cache/v5/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu/digest/0.6.37/33698c4b3127fc9f506654607fb73676/digest
+│   │               ├── dplyr -> /home/ncheuquian/.cache/R/renv/cache/v5/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu/dplyr/1.1.4/fedd9d00c2944ff00a0e2696ccf048ec/dplyr
+│   │               ├── fansi -> /home/ncheuquian/.cache/R/renv/cache/v5/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu/fansi/1.0.6/962174cf2aeb5b9eea581522286a911f/fansi
+│   │               ├── generics -> /home/ncheuquian/.cache/R/renv/cache/v5/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu/generics/0.1.3/15e9634c0fcd294799e9b2e929ed1b86/generics
+│   │               ├── glue -> /home/ncheuquian/.cache/R/renv/cache/v5/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu/glue/1.8.0/5899f1eaa825580172bb56c08266f37c/glue
+│   │               ├── lifecycle -> /home/ncheuquian/.cache/R/renv/cache/v5/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu/lifecycle/1.0.4/b8552d117e1b808b09a832f589b79035/lifecycle
+│   │               ├── magrittr -> /home/ncheuquian/.cache/R/renv/cache/v5/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu/magrittr/2.0.3/7ce2733a9826b3aeb1775d56fd305472/magrittr
+│   │               ├── pillar -> /home/ncheuquian/.cache/R/renv/cache/v5/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu/pillar/1.10.2/1098920a19b5cd5a15bacdc74a89979d/pillar
+│   │               ├── pkgconfig -> /home/ncheuquian/.cache/R/renv/cache/v5/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu/pkgconfig/2.0.3/01f28d4278f15c76cddbea05899c5d6f/pkgconfig
+│   │               ├── renv
+│   │               │   ├── DESCRIPTION
+│   │               │   ├── INDEX
+│   │               │   ├── LICENSE
+│   │               │   ├── Meta
+│   │               │   │   ├── Rd.rds
+│   │               │   │   ├── features.rds
+│   │               │   │   ├── hsearch.rds
+│   │               │   │   ├── links.rds
+│   │               │   │   ├── nsInfo.rds
+│   │               │   │   ├── package.rds
+│   │               │   │   └── vignette.rds
+│   │               │   ├── NAMESPACE
+│   │               │   ├── NEWS.md
+│   │               │   ├── R
+│   │               │   │   ├── renv
+│   │               │   │   ├── renv.rdb
+│   │               │   │   └── renv.rdx
+│   │               │   ├── bin
+│   │               │   │   ├── renv
+│   │               │   │   └── renv.bat
+│   │               │   ├── config.yml
+│   │               │   ├── doc
+│   │               │   │   ├── ci.R
+│   │               │   │   ├── ci.Rmd
+│   │               │   │   ├── ci.html
+│   │               │   │   ├── docker.R
+│   │               │   │   ├── docker.Rmd
+│   │               │   │   ├── docker.html
+│   │               │   │   ├── faq.R
+│   │               │   │   ├── faq.Rmd
+│   │               │   │   ├── faq.html
+│   │               │   │   ├── index.html
+│   │               │   │   ├── package-install.R
+│   │               │   │   ├── package-install.Rmd
+│   │               │   │   ├── package-install.html
+│   │               │   │   ├── package-sources.R
+│   │               │   │   ├── package-sources.Rmd
+│   │               │   │   ├── package-sources.html
+│   │               │   │   ├── packages.R
+│   │               │   │   ├── packages.Rmd
+│   │               │   │   ├── packages.html
+│   │               │   │   ├── packrat.R
+│   │               │   │   ├── packrat.Rmd
+│   │               │   │   ├── packrat.html
+│   │               │   │   ├── profiles.R
+│   │               │   │   ├── profiles.Rmd
+│   │               │   │   ├── profiles.html
+│   │               │   │   ├── python.R
+│   │               │   │   ├── python.Rmd
+│   │               │   │   ├── python.html
+│   │               │   │   ├── renv.R
+│   │               │   │   ├── renv.Rmd
+│   │               │   │   ├── renv.html
+│   │               │   │   ├── rsconnect.R
+│   │               │   │   ├── rsconnect.Rmd
+│   │               │   │   └── rsconnect.html
+│   │               │   ├── ext
+│   │               │   │   └── renv.c
+│   │               │   ├── help
+│   │               │   │   ├── AnIndex
+│   │               │   │   ├── aliases.rds
+│   │               │   │   ├── figures
+│   │               │   │   │   └── logo.svg
+│   │               │   │   ├── paths.rds
+│   │               │   │   ├── renv.rdb
+│   │               │   │   └── renv.rdx
+│   │               │   ├── html
+│   │               │   │   ├── 00Index.html
+│   │               │   │   └── R.css
+│   │               │   ├── libs
+│   │               │   │   └── renv.so
+│   │               │   ├── repos
+│   │               │   │   └── src
+│   │               │   │       └── contrib
+│   │               │   │           ├── PACKAGES
+│   │               │   │           ├── PACKAGES.gz
+│   │               │   │           ├── PACKAGES.rds
+│   │               │   │           └── renv_1.1.4.tar.gz
+│   │               │   ├── resources
+│   │               │   │   ├── WELCOME
+│   │               │   │   ├── activate.R
+│   │               │   │   ├── scripts-git-askpass.cmd
+│   │               │   │   ├── scripts-git-askpass.sh
+│   │               │   │   ├── vendor
+│   │               │   │   │   └── renv.R
+│   │               │   │   └── watchdog-process.R
+│   │               │   ├── rstudio
+│   │               │   │   └── addins.dcf
+│   │               │   ├── schema
+│   │               │   │   └── draft-07.renv.lock.schema.json
+│   │               │   └── sysreqs
+│   │               │       └── sysreqs.json
+│   │               ├── rlang -> /home/ncheuquian/.cache/R/renv/cache/v5/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu/rlang/1.1.6/892124978869b74935dc3934c42bfe5a/rlang
+│   │               ├── tibble -> /home/ncheuquian/.cache/R/renv/cache/v5/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu/tibble/3.2.1/a84e2cc86d07289b3b6f5069df7a004c/tibble
+│   │               ├── tidyselect -> /home/ncheuquian/.cache/R/renv/cache/v5/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu/tidyselect/1.2.1/829f27b9c4919c16b593794a6344d6c0/tidyselect
+│   │               ├── utf8 -> /home/ncheuquian/.cache/R/renv/cache/v5/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu/utf8/1.2.4/62b65c52671e6665f803ff02954446e9/utf8
+│   │               ├── vctrs -> /home/ncheuquian/.cache/R/renv/cache/v5/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu/vctrs/0.6.5/c03fa420630029418f7e6da3667aac4a/vctrs
+│   │               └── withr -> /home/ncheuquian/.cache/R/renv/cache/v5/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu/withr/3.0.2/cc2d62c76458d425210d1eb1478b30b4/withr
+│   ├── settings.json
+│   └── staging
+├── renv.lock
+├── scripts
+│   ├── 00-setup.sh
+│   ├── 01-obtain.sh
+│   ├── 02-scrub.sh
+│   ├── 03-explore.R
+│   ├── 03-explore.sh
+│   ├── 03a-import-data.R
+│   ├── 03b-compute-summaries.R
+│   ├── 03c-validate-data.R
+│   └── 03d-make-plots.R
+└── uv.lock
+
+48 directories, 130 files

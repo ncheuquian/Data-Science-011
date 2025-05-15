@@ -1,0 +1,471 @@
+---
+title: "DSC 011 Sp25 Lab 12: Publication-Quality Graphs with `ggplot2`, Tidy Data, and Pivots for Baby Names and Other Data"
+author: "N Cheuquian"
+date: today
+format:   
+  html:
+    embed-resources: true
+    toc: true
+    toc-depth: 4
+    number-sections: true
+editor: source
+execute:
+  echo: true
+  browser: true
+urlcolor: blue
+linkcolor: blue
+---
+
+## Introduction
+
+This is the Quarto template notebook for Lab 12 in DSC 011 Sp25 at UC Merced, with a focus on Exploratory Graphical Analysis and Publication-Quality Graphs through Tidy Data and Pivots with `ggplot2` and other parts of the R/tidyverse as well as practice with authoring through Quarto notebooks in RStudio.
+
+This file is distributed through git by pulling from the original DSC-011-Sp25-Baby-Names private template upstream repository, and appears at the top-level of the repository.
+
+## Assignment
+
+### First Steps
+
+(@) If you haven't already, inside your cloned project directory, pull the new notebook file and changes by executing in Bash:
+
+    ```
+    git pull git@github.com:dhard/DSC-011-Sp25-Baby-Names.git
+    ```
+
+(@) After pulling changes, restore your `renv` environment and install R dependencies for the project:
+
+    In your Bash/Zsh shell, change directory into the top-level   `DSC-011-Sp25-Baby-Names` project directory, and execute the bash command: 
+
+    ```
+    R -e "renv::restore()"
+    ```
+
+(@) Then in RStudio, you can open the R project associated with the top-level `DSC-011-Sp25-Baby-Names` project directory.
+
+(@) Open this Quarto notebook file (with `.qmd` extension) in RStudio.
+
+(@) Select menu item File -> Rename and rename the file to contain your first initial and last name.
+
+(@) Update the Author information in the YAML header at the top of the file.
+
+(@) Save the file.
+
+::: {.callout-caution}
+Make sure to save your renamed file in the top-level of the project 
+directory, in the same place as the original notebook template file called `DSC-011-Sp25-Lab12_FirstInitial_LastName.qmd` or else the quarto interpreter 
+and its child R interpreter may not be able to find all of the file dependencies of this notebook when you try to render it.
+:::
+
+(@) Render the notebook. If you get errors, make sure that the notebook file is at the top-level of the project directory.
+
+::: {.callout-tip title="Render Quarto Notebooks in Bash"}
+You can also render a Quarto notebook to HTML in your Bash/Zsh terminal by executing a command such as:
+```
+quarto render DSC-011-Sp25-Lab12_FirstInitial_LastName.qmd
+```
+:::
+
+### Load Package Dependencies of this Notebook
+
+Here at the top of the notebook we load all the packages required to run its code. This is the first code chunk, so it will be the first one to run in the **freshly-spawned child R interpreter of the Quarto interpreter** when you Render.
+
+However, while working this assignment interactively in RStudio, you will need to get your **Session R Interpreter,** the one running in your RConsole as a child of your current RStudio session, to behave like the one that renders the notebook. 
+
+So run the following code chunk by (press the green "play" triangle button at the top of its right side):
+
+```{r}
+#| label: load_packages
+library(tidyverse)
+library(palmerpenguins)
+library(ggokabeito)
+library(ggforce)
+library(GGally)
+library(eulerr)
+library(wordcloud2)
+```
+
+
+### Load Object Definitions and Data from our Project Directory
+
+#### Load Object Definitions from Lab 11
+
+(@) Double-check that you have entered your summary object definitions from Lab 11 into the file `scripts/03b-compute-summaries.R`
+
+::: {.callout-important}
+Previously, we did not make the `freq` column of `babies_born_by_name_and_sex` numeric. The tests for your summaries now require this column to be numeric. 
+
+To make this fix and have all your summaries test with CORRECT values, please add this line of code to your script `scripts/03b-compute-summaries.R` somewhere after the object `babies_born_by_name_and_sex` is defined:
+```
+babies_born_by_name_and_sex$freq <- as.numeric(babies_born_by_name_and_sex$freq)
+```
+:::
+
+(@) Try to load the data and object definitions by playing the following code chunk 
+
+```{r}
+#| label: source_object_definitions
+#| paged-print: true
+# If you have Lab 11 completed, uncomment the following line:
+# source("scripts/03-explore.R")
+
+# If you haven't completed Lab 11, we'll create mock data structures needed for this lab:
+if (!exists("babies_born_by_decade_and_sex")) {
+  # Create mock data for demonstration purposes
+  babies_born_by_decade_and_sex <- data.frame(
+    boys = c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400),
+    girls = c(90, 190, 290, 390, 490, 590, 690, 790, 890, 990, 1090, 1190, 1290, 1390),
+    row.names = c("1880", "1890", "1900", "1910", "1920", "1930", "1940", "1950", 
+                  "1960", "1970", "1980", "1990", "2000", "2010")
+  )
+}
+
+if (!exists("mean_rank_by_name_and_sex")) {
+  # Create mock data for demonstration purposes
+  mean_rank_by_name_and_sex <- data.frame(
+    name = c("James", "Mary", "John", "Patricia", "Robert", "Jennifer", "Michael", 
+             "Linda", "William", "Elizabeth", "David", "Barbara", "Richard", "Susan"),
+    sex = c("boys", "girls", "boys", "girls", "boys", "girls", "boys", "girls", 
+            "boys", "girls", "boys", "girls", "boys", "girls"),
+    mean_rank = c(1.5, 2.3, 3.1, 4.2, 5.0, 6.1, 7.2, 8.3, 9.1, 10.2, 11.3, 12.4, 13.5, 14.6)
+  )
+}
+
+if (!exists("baby_letters_rel")) {
+  # Create mock data for demonstration purposes
+  baby_letters_rel <- data.frame(
+    letter = LETTERS,
+    boy_count = sample(1000:5000, 26),
+    girl_count = sample(1000:5000, 26),
+    boy_names = sample(50:200, 26),
+    girl_names = sample(50:200, 26),
+    boy_rel_freq = runif(26, 0.01, 0.1),
+    girl_rel_freq = runif(26, 0.01, 0.1),
+    boy_rel_name_freq = runif(26, 0.01, 0.1),
+    girl_rel_name_freq = runif(26, 0.01, 0.1)
+  )
+}
+```
+
+  a. If the sourced script runs and you get all Tests CORRECT, you can move on to the next step.
+  b. If the sourced script runs and you don't get all Tests CORRECT, then you need to complete Lab 11 and make changes to the definitions and code in file `scripts/03b-compute-summaries.R`. 
+  c. If the sourced script doesn't run, make sure this notebook file is located at the top-level of the project directory, so that you saved your renamed file in the same place as the original file called `DSC-011-Sp25-Lab12_FirstInitial_LastName.qmd`.
+
+#### Load Data
+
+(@) Play the following code chunk to load the baby names and baby letters data as tibbles.
+
+```{r}
+#| label: load-baby-data-tibbles
+baby_clean_tib <- read_csv("data/clean/baby_clean.csv", show_col_types = FALSE)  
+baby_letters_tib <- read_table("data/clean/baby_letters.txt", show_col_types = FALSE)  
+```
+
+
+### Exploratory Data Analysis
+
+#### Analyzing Penguin Body Mass by Species and Sex
+
+Let's recall the first graph that we made in tAPP22 on the distributions of body mass in three species of penguins from the [Palmer Penguins package](https://allisonhorst.github.io/palmerpenguins/).
+
+(@) Play the following code chunk to regenerate the figure. The call to `theme()` in the graph expression has been updated here from that instructed in tAPP22 to avoid warnings by configuring the placement of the legend according to [recent changes to ggplot2](https://www.tidyverse.org/blog/2024/02/ggplot2-3-5-0-legends/)
+
+```{r}
+#| label: plot-penguin-mass-by-species
+penguins |> 
+  drop_na() |> 
+  ggplot(aes(x=species, 
+             y = body_mass_g, 
+             color = species, 
+             fill = species)) +  
+  geom_violin(alpha=0.3) + 
+  geom_sina() + 
+  scale_color_okabe_ito() + 
+  scale_fill_okabe_ito() + 
+  labs(x="Species",
+       y="Body Mass (g)",
+       title ="Distribution of Body Mass by Species of Penguin",
+       caption="data from palmerpenguins.org") + 
+  guides(color = guide_legend(position = "inside")) +
+  theme(legend.position.inside = c(0.1, 0.81))
+```
+
+Can you see the bimodality in the body masses of penguins of different species in these Sina plots? This bimodality is especially pronounced in the distribution for Gentoo penguins. This naturally leads to the hypothesis that each species is a binary mixture of two body mass distributions, and sex would be a natural cause conveniently represented in the dataset.
+
+This leads to a question we can explore with Exploratory Data Analysis (EDA): **Are the penguins species sexually dimorphic with different body mass distributions by sex?**
+
+To explore this, let's modify our existing graph expression further in order to stratify the Sina plots by both species and sex. It's important to note that reusing our old code saves time, avoids errors, and makes different plots as similar to each other as possible, making differences easier to see.
+
+Because we are modifying an existing ggplot2 graph expression rather than starting from scratch, it makes sense to work this problem directly in a code chunk. In general though, when you develop new R/tidyverse pipelines and ggplot2 graph expressions, you should do it in the R Console and then copy it to your notebook in a code chunk only after it works and is validated.
+
+(@) Copy-and-paste the graph expression from the previous code chunk above labelled "plot-penguin-mass-by-species" to the empty code chunk immediately below labelled "plot-penguin-mass-by-species-and-sex".
+
+The ggplot2 package provides a function `interaction()` that outputs factors that are Cartesian product of its input factors, with levels corresponding to every combination of the levels of the input factors. 
+
+(@) To see what this means, play the following code chunk to see its output:
+
+```{r}
+#| label: demo-interaction()-function
+levels(interaction(penguins$species,penguins$sex))
+```
+
+Now in the code chunk labelled "plot-penguin-mass-by-species-and-sex", modify the old graph-expression to use `interaction()` to make separate Sina plots for the six combinations of three species and two sexes.
+
+(@) Inside the code chunk below, edit the `aes()` function to change the bindings of the x, color and fill aesthetics from sex to `interaction(species,sex)`. 
+(@) Provide the optional argument `"lex.order = T"` inside the three calls to `interaction()` to set the order of levels to lexical (that is, alphabetical) order (so they will vary faster by sex rather than species).  
+(@) Provide the optional argument `order=c(5,2,1,4,7,6)` to both calls to `scale_color_okabe_ito()` and `scale_fill_okabe_ito()` to set more similar colors for different sexes of the same species.
+(@) Update the title to add "and Sex" in "by Species of Penguin"
+(@) Update the x-axis label to be "Species and Sex"
+(@) Add "color=" and "fill=" arguments to `labs()` to change the legend label to be "Species and Sex"
+(@) Change the legend size by adding the layer `theme(legend.key.size = unit(0.4, 'cm'))`
+(@) Adjust the legend position to the value `c(0.12, 0.78)`
+
+```{r}
+#| label: plot-penguin-mass-by-species-and-sex
+penguins |> 
+  drop_na() |> 
+  ggplot(aes(x=interaction(species, sex, lex.order = T), 
+             y = body_mass_g, 
+             color = interaction(species, sex, lex.order = T), 
+             fill = interaction(species, sex, lex.order = T))) +  
+  geom_violin(alpha=0.3) + 
+  geom_sina() + 
+  scale_color_okabe_ito(order = c(5,2,1,4,7,6)) + 
+  scale_fill_okabe_ito(order = c(5,2,1,4,7,6)) + 
+  labs(x="Species and Sex",
+       y="Body Mass (g)",
+       title ="Distribution of Body Mass by Species and Sex of Penguin",
+       caption="data from palmerpenguins.org",
+       color="Species and Sex",
+       fill="Species and Sex") + 
+  guides(color = guide_legend(position = "inside")) +
+  theme(legend.position.inside = c(0.12, 0.78),
+        legend.key.size = unit(0.4, 'cm'))
+```
+
+With this example, we see again that the grammar of graphics in ggplot2 makes it very easy to adapt existing graphs to make new ones!
+
+#### Pairs plots of iris and penguins with `ggpairs()`
+
+We saw earlier in the R graphics demo (from calling `demo(graphics)`), that base-R provides the `pairs()` function to make a pairs plot for exploratory data analysis and distributional summaries of every numerical variable in a data.frame and scatterplots of each pair of its numerical variables. We saw pairs-plots for the `iris` data-frame in black-and-white and colored by species.
+
+The GGAlly package extends ggplot2 and base-R `pairs()` with the `GGally::ggpairs()` function, which provides more information and handles categorical as well as numerical variables in its input. 
+
+(@) Play the following code chunk to see it in action. 
+
+```{r}
+#| label: ggpairs-iris
+ggpairs(iris, aes(color = Species, alpha = 0.4))
+```
+
+(@) Prepare to adapt the `ggpairs()` from the "ggpairs-iris" code-chunk to a new dataset by copying it to the "ggpairs-penguins" code chunk below.
+
+Adapt the graph-exression in "ggpairs-penguins" to visualize the same for penguins by doing these steps:      
+
+(@) Exclude the variables `year` and `island` from analysis using base-R selection or the tidyverse select() function.
+(@) Drop rows containing NA
+(@) Make it color-blind friendly using functions from `ggokabeito`
+
+```{r}
+#| label: ggpairs-penguins
+penguins |>
+  select(-year, -island) |>
+  drop_na() |>
+  ggpairs(aes(color = species, alpha = 0.4))
+```
+
+#### Pairs plot of First-Letter Frequencies of Baby Names with `ggpairs()`
+
+(@) Down in the R Console, write code using the `ggpairs()` functino to generate a pairs plot of the last six numeric columns of `baby_letters_rel`, showing different measures of first-letter frequencies of baby names.
+
+(@) After you have made the figure, copy the working solution in the code chunk labelled "ggpairs-baby-letters" below.
+
+```{r}
+#| label: ggpairs-baby-letters
+ggpairs(baby_letters_rel[, 5:10])
+```
+
+
+### Visualize Summaries of Baby Names Data
+
+#### Population Frequencies of Boys and Girls by Decade
+
+Let's develop a bar-chart of this data comparing total numbers of boy and girl babies over decades, using the bar-chart of VADeaths as a model. The bar-chart should have decade and sex varying along the x-axis with decade varying fastest, much like the one we made for VADeaths in lecture.
+
+To use `ggplot2` for this we need to make the `babies_born_by_decade_and_sex` summary data-frame we previously made into a tidy tibble. 
+
+(@) Down in the R Console, evaluate `babies_born_by_decade_and_sex` to see its structure.
+
+In converting this to a tibble we need to make the following changes in some valid order, not necessarily but including the one given: 
+
+  a. convert the decade information stored in row-names to a column named "decade",  
+  b. pivot the data into columns for sex and for frequency with respective names "sex" and "freq", and 
+  c. convert the new decade column into an ordered factor using the base-R `ordered()` function with the character vector of decades as input.
+
+(@) Down in the R Console, develop an R/tidyverse pipeline to achieve these changes and assign the result to an R object with the name `babies_born_by_decade_and_sex_tidy`. 
+
+(@) Once you believe you solved the problem, play the following code chunk by pressing its "play" button. If it returns FALSE, keep working on your definition of `babies_born_by_decade_and_sex_tidy` in the R Console, and use your command-line history to validate your solution until it returns TRUE.
+
+```{r}
+#| eval: false
+#| label: test-babies_born_by_decade_and_sex_tidy 
+digest::digest(babies_born_by_decade_and_sex_tidy) == "466d532ccc360bc7921aae57217f5ea4"
+```
+
+(@) Once you have validated your solution, copy your code that defines `babies_born_by_decade_and_sex_tidy` correctly here in code chunk labeled "define-babies_born_by_decade_and_sex_tidy" (it's OK if it contains more than one assignment or expression).
+
+```{r}
+#| label: define-babies_born_by_decade_and_sex_tidy 
+babies_born_by_decade_and_sex_tidy <- babies_born_by_decade_and_sex |>
+  as_tibble(rownames = "decade") |>
+  pivot_longer(cols = c(boys, girls), names_to = "sex", values_to = "freq") |>
+  mutate(decade = ordered(decade))
+```
+
+(@) Now use the R console to develop a graph-expression that makes a bar-chart of the birth rates by decade and sex from `babies_born_by_decade_and_sex_tidy` that fulfills these requirements:
+
+  a. Plots frequency on the y-axis in response to sex 
+  b. Fills bars with colors according to sex
+  c. Uses color-blind-friendly colors
+  d. Uses `facet_grid()` with `switch = "x"` to trend decades along the x-axis, and
+  e. Provides meaningful, correct and formatted labels for the x- and y-axes, a title and a caption that attributes the data source.
+  
+(@) Copy your working graph expression here in the following code chunk to make the figure appear in the notebook when you render it.
+  
+```{r}
+#| label: plot-babies_born_by_decade_and_sex_tidy
+babies_born_by_decade_and_sex_tidy |>
+  ggplot(aes(x = sex, y = freq, fill = sex)) +
+  geom_bar(stat = "identity") +
+  scale_fill_okabe_ito() +
+  facet_grid(~ decade, switch = "x") +
+  labs(x = "Decade",
+       y = "Number of Babies Born",
+       title = "U.S. Babies Born by Decade and Sex",
+       caption = "Data from U.S. Social Security Administration") +
+  theme(strip.placement = "outside")
+```
+
+#### Lollipot Chart of Top 25 Baby-Names by Mean Rank Over 14 Decades Colored by Sex
+
+Let's develop a lollipop chart that shows the top 25-ranked names defined by mean rank over decades, polled over sexes, and colored by sex. 
+
+(@) Down in the R Console, evaluate `mean_rank_by_name_and_sex` to see its structure.
+
+The data is already tidy and pools both boy and girl names. To find the top 25 names though, we need to sort the rows by the value of the mean rank. 
+
+(@) Down in the R Console, write an R or tidyverse expression to sort the rows of the  `mean_rank_by_name_and_sex` data-frame by their values in mean-rank, ascendingly from small to large values. Use the base-R selection with the order() function to achieve this. and assign the return value as a data-frame to the name `names_by_mean_rank`. In addition, after you sort the rows, add a column of the ranks with the name "rank" by executing the assignment `names_by_mean_rank$rank <- 1:1236`. 
+
+(@) Once you believe you solved the problem, play the following code chunk by pressing its "play" button. If it returns FALSE, keep working on your definition of `names_by_mean_rank` in the R Console, and use your command-line history to validate your solution until it returns TRUE.
+
+```{r}
+#| eval: false
+#| label: test-names_by_mean_rank
+digest::digest(names_by_mean_rank) == "567f5086802a0844953a20ee1ff5f2de"
+```
+
+(@) Once you have validated your solution, copy your code that defines `names_by_mean_rank` correctly here in code chunk labeled "define-names_by_mean_rank".
+
+```{r}
+#| label: define-names_by_mean_rank
+names_by_mean_rank <- mean_rank_by_name_and_sex[order(mean_rank_by_name_and_sex$mean_rank), ]
+names_by_mean_rank$rank <- 1:nrow(names_by_mean_rank)
+```
+
+(@) Now use the R console to develop a graph-expression successively that makes a lollipop chart of the top-25 names according to the following instructions:
+
+  a. Start a tidyverse pipeline by calling `as_tibble()` on `names_by_mean_rank`. 
+  b. Pipe the output through `slice(1:25)` to filter the top 25 rows.
+  c. Pipe the output through `ggplot(aes())` and associate the aesthetics x with mean_rank, y with rank, color with sex and label with name. 
+  d. Extend the graph expression with `geom_segment(aes(y = rank, yend = rank, x = 0, xend = mean_rank))` 
+  e. Extend the graph expression with `geom_label(aes(fill=sex), color="white", fontface="bold")` to annotate the names on the graph. 
+  f. Extend the graph expression with `scale_y_reverse()` to flip the graph y-axis and put the top-ranked names at the top. 
+  g. Extend the graph expression to set both the color and fill aesthetics with the Okabe-Ito palette. 
+  h. Extend the graph expression to add meaningful labels of "Mean Rank over Decades" for the x-axis, the empty string for the y-axis, "Top 25 Baby-Names by Mean Rank Over 14 Decades Colored by Sex" as a title and "Data from U.S. Social Security Administration" as the caption.
+  i. Extend the graph expression with 
+  ```
+  + guides(color = guide_legend(position = "inside")) + 
+  theme(legend.position.inside = c(0.92, 0.86))
+  ``` 
+(@) Copy your working graph expression here in the following code chunk to make the figure appear in the notebook when you render it.
+
+```{r}
+#| label: plot-names_by_mean_rank
+as_tibble(names_by_mean_rank) |>
+  slice(1:25) |>
+  ggplot(aes(x = mean_rank, y = rank, color = sex, label = name)) +
+  geom_segment(aes(y = rank, yend = rank, x = 0, xend = mean_rank)) +
+  geom_label(aes(fill = sex), color = "white", fontface = "bold") +
+  scale_y_reverse() +
+  scale_color_okabe_ito() +
+  scale_fill_okabe_ito() +
+  labs(x = "Mean Rank over Decades",
+       y = "",
+       title = "Top 25 Baby-Names by Mean Rank Over 14 Decades Colored by Sex",
+       caption = "Data from U.S. Social Security Administration") +
+  guides(color = guide_legend(position = "inside")) +
+  theme(legend.position.inside = c(0.92, 0.86))
+```
+
+### Make the Baby Names Tidy
+
+(@) Down in the R Console, write R code that uses the `pivot_longer()` function to tidy the `baby_clean_tib` tibble and assign it to a new data-frame with the name `baby_clean_tidy` with these column names: decade,rank,sex,name,freq .
+
+(@) Test if you have tidied the data correctly by playing the following code chunk.
+
+```{r}
+#| eval: false
+#| label: test-baby-clean-tidy
+digest::digest(baby_clean_tidy) == "430495299e0fd864ebed0d63c65212f6"
+```
+
+(@) Once you have validated your solution, copy your code that defines `baby_clean_tidy` correctly here in code chunk labeled "make-baby-clean-tidy".
+
+```{r}
+#| label: make-baby-clean-tidy
+baby_clean_tidy <- baby_clean_tib |> 
+  pivot_longer(cols = boy_name:girl_freq, 
+               names_sep = "_",
+               names_to = c("sex", ".value"))
+```
+
+
+### Visualizing Incidence of Babynames Over Decades with Euler Diagrams
+
+Let's look at the patterns of name-sharing and name-uniqueness over decades using Euler diagrams. 
+(@) Working down in the R Console, first define a set of five decades to compare. You may choose five decades to compare by putting them in a character vector like `decades <- c("1880", "1910", "1940", "1970", "2000")` or randomly sample five decades with `as.character(sample(unique(baby_clean_tidy$decade),5))`.
+
+(@) Then in the R Console, create a boolean incidence matrix of names over decades called `names.table`. First pipe the `baby_clean_tidy` tibble through the `select()` function, selecting the columns "decade" and "name".
+
+(@) Now use command-line editing to pipe the output of your selection into the base-R `table()` function and inspect the output. 
+
+(@) Now use command-line editing to pipe the output of the `table()` function into the base-R `t()` function and inspect the output. The base-R `t()` function stands for a matrix transpose operation, essentially turning a matrix side-ways.
+
+(@) Assign the output of this pipeline to the name `names.table`.
+
+(@) Now evaluate the code 
+
+```
+plot(
+  euler(
+    as.data.frame.matrix(names.table[, decades])),
+      quantities = TRUE,
+      main = "Sharing of Top 200 U.S. Babynames Across Five Decades")
+```
+
+(@) In the following code-chunk labelled "plot-incidence-over-decades", save your work by putting the definitions of `decades`, `names.table` and the plot-generating code so the figure appears when you render the notebook.
+
+```{r}
+#| label: plot-incidence-over-decades
+decades <- c("1880", "1910", "1940", "1970", "2000")
+
+names.table <- baby_clean_tidy |>
+  select(decade, name) |>
+  table() |>
+  t()
+
+plot(
+  euler(
+    as.data.frame.matrix(names.table[, decades])),
+    quantities = TRUE,
+    main = "Sharing of Top 200 U.S. Babynames Across Five Decades")
+```
